@@ -1,0 +1,13 @@
+<mat-grid-list cols="7" rowHeight="1:1" class="month">
+    <mat-grid-tile *ngFor="let day of days_array"
+      matRipple
+      [matRippleCentered]="false"
+      [matRippleDisabled]="false"
+      [matRippleUnbounded]="false"
+    >
+    <div>
+        <h5>{{day}}</h5>
+    </div>
+    </mat-grid-tile>
+</mat-grid-list>
+  
