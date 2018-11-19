@@ -16,7 +16,7 @@ export class CalendarComponent implements OnInit {
 
   leap():number{
     let date = (new Date(Date.now())).getFullYear();
-    if (date % 4 == 0)
+    if (date % 4 != 0)
       return 28;
     else 
       if (date % 100 != 0) 

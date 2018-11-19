@@ -7,20 +7,22 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class MonthComponent implements OnInit {
 
-  @Input() days: number = 1;
+  @Input() days = 1;
 
   days_array: Array<number> = [];
 
   constructor() {
     this.days_array = new Array<number>(this.days);
-    for(let i = 0; i < this.days; i++)
+    for ( let i = 0; i < this.days; i++ ) {
       this.days_array[i] = i + 1;
+    }
    }
 
   ngOnInit() {
     this.days_array = new Array<number>(this.days);
-    for(let i = 0; i < this.days; i++)
+    for ( let i = 0; i < this.days; i++ ) {
       this.days_array[i] = i + 1;
+    }
   }
 
 }
