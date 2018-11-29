@@ -19,6 +19,20 @@ import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { AddToRolesComponent } from './dialogs/admin/add-to-roles/add-to-roles.component';
 import { AdminComponent } from './components/admin/admin.component';
+import { RoleService } from './services/role/role.service';
+import { AddToConsultationsComponent } from './dialogs/admin/add-to-consultations/add-to-consultations.component';
+import { AddToEmployeesComponent } from './dialogs/admin/add-to-employees/add-to-employees.component';
+import { AddToReviewsComponent } from './dialogs/admin/add-to-reviews/add-to-reviews.component';
+import { AddToSpecializationsComponent } from './dialogs/admin/add-to-specializations/add-to-specializations.component';
+import { AddToSpecializationsOfEmployeesComponent } from './dialogs/admin/add-to-specializations-of-employees/add-to-specializations-of-employees.component';
+import { AddToUsersComponent } from './dialogs/admin/add-to-users/add-to-users.component';
+import { AddToUsersRolesComponent } from './dialogs/admin/add-to-users-roles/add-to-users-roles.component';
+import { EmployeeService } from './services/employee/employee.service';
+import { ReviewService } from './services/review/review.service';
+import { SpecializationService } from './services/specialization/specialization.service';
+import { SpecializationOfEmployeeService } from './services/specializationOfEmployee/specialization-of-employee.service';
+import { UserRoleService } from './services/userRole/user-role.service';
+import { UserService } from './services/user/user.service';
 
 @NgModule({
   declarations: [
@@ -29,6 +43,13 @@ import { AdminComponent } from './components/admin/admin.component';
     ConsultaionsComponent,
     AddToRolesComponent,
     AdminComponent,
+    AddToConsultationsComponent,
+    AddToEmployeesComponent,
+    AddToReviewsComponent,
+    AddToSpecializationsComponent,
+    AddToSpecializationsOfEmployeesComponent,
+    AddToUsersComponent,
+    AddToUsersRolesComponent,
   ],
   imports: [
     BrowserModule,
@@ -54,8 +75,26 @@ import { AdminComponent } from './components/admin/admin.component';
     MatFormFieldModule,
     FlexLayoutModule,
   ],
-  providers: [ConsultationService],
+  providers: [
+    ConsultationService,
+    RoleService,
+    EmployeeService,
+    ReviewService,
+    SpecializationService,
+    SpecializationOfEmployeeService,
+    UserRoleService,
+    UserService
+  ],
   bootstrap: [AppComponent],
-  entryComponents: [AddToRolesComponent]
+  entryComponents: [
+    AddToRolesComponent,
+    AddToConsultationsComponent,
+    AddToEmployeesComponent,
+    AddToReviewsComponent,
+    AddToSpecializationsComponent,
+    AddToSpecializationsOfEmployeesComponent,
+    AddToUsersComponent,
+    AddToUsersRolesComponent
+  ]
 })
 export class AppModule { }

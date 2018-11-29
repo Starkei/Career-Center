@@ -14,4 +14,9 @@ export class RoleService {
   getAll(): Observable<any[]>{
     return this.http.get<any[]>(this.baseUrl + "/all");
   }
+
+  add(role: any) {
+    this.http.post<any[]>(this.baseUrl + "/add", role).subscribe();
+  }
+
 }

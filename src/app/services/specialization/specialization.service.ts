@@ -14,4 +14,8 @@ export class SpecializationService {
   getAll(): Observable<any[]>{
     return this.http.get<any[]>(this.baseUrl + "/all");
   }
+
+  add(specialization: any) {
+    this.http.post<any[]>(this.baseUrl + "/add", specialization).subscribe();
+  }
 }

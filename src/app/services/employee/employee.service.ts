@@ -15,4 +15,8 @@ export class EmployeeService {
     return this.http.get<any[]>(this.baseUrl + "/all");
   }
 
+  add(review: any) {
+    this.http.post<any[]>(this.baseUrl + "/add", review).subscribe();
+  }
+
 }

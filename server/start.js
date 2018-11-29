@@ -20,5 +20,3 @@ var server = app.listen(8080, function(){
     let port = server.address().port;
     console.log("server is listening on : http://%s:%s",host, port);
 });
-
-db.sequelize.sync({force:true});

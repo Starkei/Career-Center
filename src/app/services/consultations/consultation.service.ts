@@ -15,4 +15,8 @@ export class ConsultationService {
     return this.http.get<any[]>(this.baseUrl + "/all");
   }
 
+  add(consultaion: any) {
+    this.http.post<any[]>(this.baseUrl + "/add", consultaion).subscribe();
+  }
+
 }
