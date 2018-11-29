@@ -1,0 +1,11 @@
+<h1 mat-dialog-title>Create role</h1>
+<mat-dialog-content>
+  <p>Fill fields, and press the button to create a role</p>
+  <mat-form-field>
+    <input matInput type="text" [(ngModel)]="roleName" placeholder="Enter role name">
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="sendRole()">Create</button>
+  <button mat-button mat-dialog-close>Cancle</button>
+</mat-dialog-actions>

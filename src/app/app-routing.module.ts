@@ -1,12 +1,15 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { RecordsComponent } from './components/records/records.component';
-import { CalendarComponent } from './componets/calendar/calendar.component';
+import { MainComponent } from './components/pages/main/main.component';
+import { ContactsComponent } from './components/pages/contacts/contacts.component';
+import { ConsultaionsComponent } from './components/pages/consultaions/consultaions.component';
+import { AdminComponent } from './components/admin/admin.component';
 
 const routes: Routes = [
-  { path: '', component: RecordsComponent},
-  { path: 'records', component: RecordsComponent},
-  {path: 'calendar', component: CalendarComponent}
+    {path: 'main', component: MainComponent},
+    {path: 'contact', component: ContactsComponent},
+    {path: 'consultaions', component: ConsultaionsComponent},
+    {path: 'admin', component: AdminComponent}
 ];
 
 @NgModule({

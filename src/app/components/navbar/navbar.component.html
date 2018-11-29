@@ -1,0 +1,22 @@
+<mat-toolbar>
+  <span>Consultation Center</span>
+  <span>
+    <button
+      type="button"
+      aria-label="Toggle sidenav"
+      mat-icon-button
+      (click)="drawer.toggle()"
+      *ngIf="handSet | async">
+      <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+    </button>
+  </span>
+  <span
+    [routerLink]="link.path"
+    routerLinkActive="router-link-active"
+    *ngFor="let link of links"
+  >
+    <button class="nav-buttons" mat-button>{{link.title | uppercase}}</button>
+  </span>
+</mat-toolbar>
+<router-outlet></router-outlet>
+
