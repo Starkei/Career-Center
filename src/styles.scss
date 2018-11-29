@@ -12,22 +12,28 @@
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$Career-Center-primary: mat-palette($mat-green, A400);
-$Career-Center-accent: mat-palette($mat-green, A200, A100, A400);
+$Career-Center-primary: mat-palette($mat-grey);
+$Career-Center-accent: mat-palette($mat-pink, A200, A100, A400);
 
 // The warn palette is optional (defaults to red).
 $Career-Center-warn: mat-palette($mat-yellow);
 
 // Create the theme object (a Sass map containing all of the palettes).
+
 $Career-Center-theme: mat-dark-theme($Career-Center-primary, $Career-Center-accent, $Career-Center-warn);
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
 @include angular-material-theme($Career-Center-theme);
-@include mat-sidenav-theme($Career-Center-theme);
+$theme: mat-light-theme($Career-Center-primary, $Career-Center-accent, $Career-Center-warn);
+@include mat-tabs-theme($theme);
+.light{
+  @include angular-material-theme($theme);
+}
 
+*{
+  margin: 0;
+  padding: 0;
+}
 /* You can add global styles to this file, and also import other style files */
-
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

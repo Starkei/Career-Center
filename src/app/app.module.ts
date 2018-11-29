@@ -33,6 +33,14 @@ import { SpecializationService } from './services/specialization/specialization.
 import { SpecializationOfEmployeeService } from './services/specializationOfEmployee/specialization-of-employee.service';
 import { UserRoleService } from './services/userRole/user-role.service';
 import { UserService } from './services/user/user.service';
+import { ConsultationsTableComponent } from './components/admin/tables/consultations-table/consultations-table.component';
+import { EmployeeTableComponent } from './components/admin/tables/employee-table/employee-table.component';
+import { ReviewTableComponent } from './components/admin/tables/review-table/review-table.component';
+import { RoleTableComponent } from './components/admin/tables/role-table/role-table.component';
+import { SpecializationTableComponent } from './components/admin/tables/specialization-table/specialization-table.component';
+import { SpecializationOfEmployeeTableComponent } from './components/admin/tables/specialization-of-employee-table/specialization-of-employee-table.component';
+import { UserTableComponent } from './components/admin/tables/user-table/user-table.component';
+import { UserRoleTableComponent } from './components/admin/tables/user-role-table/user-role-table.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +58,14 @@ import { UserService } from './services/user/user.service';
     AddToSpecializationsOfEmployeesComponent,
     AddToUsersComponent,
     AddToUsersRolesComponent,
+    ConsultationsTableComponent,
+    EmployeeTableComponent,
+    ReviewTableComponent,
+    RoleTableComponent,
+    SpecializationTableComponent,
+    SpecializationOfEmployeeTableComponent,
+    UserTableComponent,
+    UserRoleTableComponent,
   ],
   imports: [
     BrowserModule,

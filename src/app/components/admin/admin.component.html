@@ -1,42 +1,9 @@
-<mat-tab-group>
-  <mat-tab label="Consultations">
-    <div>
-      <button mat-button (click)="showConsultationAddDialog()">Add consultation</button>
-    </div>
-  </mat-tab>
-  <mat-tab label="Employees">
-    <div>
-      <button mat-button (click)="showEmployeeAddDialog()">Add employee</button>
-    </div>
-  </mat-tab>
-  <mat-tab label="Reviews">
-    <div>
-      <button mat-button (click)="showReviewAddDialog()">Add review</button>
-    </div>
-  </mat-tab>
-  <mat-tab label="Roles">
-    <div>
-      <button mat-button (click)="showRoleAddDialog()">Add role</button>
-    </div>
-  </mat-tab>
-  <mat-tab label="Specializations">
-    <div>
-      <button mat-button (click)="showSpecializationAddDialog()">Add specialization</button>
-    </div>
-  </mat-tab>
-  <mat-tab label="Specializations of employees">
-    <div>
-      <button mat-button (click)="showSpecializationOfEmployeeAddDialog()">Add specialization of employee</button>
-    </div>
-  </mat-tab>
-  <mat-tab label="Users">
-    <div>
-      <button mat-button (click)="showUserAddDialog()">Add user</button>
-    </div>
-  </mat-tab>
-  <mat-tab label="User roles">
-    <div>
-      <button mat-button (click)="showUserRoleAddDialog()">Add user role</button>
-    </div>
-  </mat-tab>
-</mat-tab-group>
+<nav [@slide] mat-tab-nav-bar class="light">
+  <a mat-tab-link
+     *ngFor="let link of links"
+     [routerLink]="[{outlets: {admin: [link.path]}}]"
+     routerLinkActive #rla="routerLinkActive">
+    {{link.title}}
+  </a>
+</nav>
+<router-outlet name="admin"></router-outlet>

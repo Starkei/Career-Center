@@ -1,4 +1,4 @@
-<mat-toolbar>
+<mat-toolbar class="candy-carousel">
   <span>Consultation Center</span>
   <span>
     <button
@@ -11,12 +11,12 @@
     </button>
   </span>
   <span
-    [routerLink]="link.path"
+    [routerLink]="[{outlets: {navbar: [link.path]}}]"
     routerLinkActive="router-link-active"
     *ngFor="let link of links"
   >
     <button class="nav-buttons" mat-button>{{link.title | uppercase}}</button>
   </span>
 </mat-toolbar>
-<router-outlet></router-outlet>
+<router-outlet name="navbar"></router-outlet>
 
