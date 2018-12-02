@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, MatSort } from '@angular/material';
 import { ReviewTableDataSource } from './review-table-datasource';
 import { Slide } from 'src/app/animations/slide';
+import { ReviewService } from 'src/app/services/review/review.service';
 
 @Component({
   selector: 'app-review-table',
@@ -15,9 +16,11 @@ export class ReviewTableComponent implements OnInit {
   dataSource: ReviewTableDataSource;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['id', 'name'];
+  displayedColumns = ['id', 'text'];
+
+  constructor(private service: ReviewService){}
 
   ngOnInit() {
-    this.dataSource = new ReviewTableDataSource(this.paginator, this.sort);
+    this.dataSource = new ReviewTableDataSource(this.service, this.paginator, this.sort);
   }
 }

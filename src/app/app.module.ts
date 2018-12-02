@@ -41,6 +41,7 @@ import { SpecializationTableComponent } from './components/admin/tables/speciali
 import { SpecializationOfEmployeeTableComponent } from './components/admin/tables/specialization-of-employee-table/specialization-of-employee-table.component';
 import { UserTableComponent } from './components/admin/tables/user-table/user-table.component';
 import { UserRoleTableComponent } from './components/admin/tables/user-role-table/user-role-table.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -66,6 +67,7 @@ import { UserRoleTableComponent } from './components/admin/tables/user-role-tabl
     SpecializationOfEmployeeTableComponent,
     UserTableComponent,
     UserRoleTableComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,

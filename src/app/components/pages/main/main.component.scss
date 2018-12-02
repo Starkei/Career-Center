@@ -1,0 +1,45 @@
+mat-card.whoWeAre {
+
+  margin: 1%;
+
+  div.parallax-image{
+    background-image: url('https://pcctherapy.com/wp-content/uploads/2017/06/IMG_3882-1100x813.jpg');
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 50vh;
+  }
+
+  mat-card-content{
+    p{
+      text-align: justify;
+      font-size: 1.5em;
+    }
+  }
+
+}
+
+mat-card.howManyOfUs {
+
+  margin: 1%;
+
+  mat-card-content{
+    p{
+      text-align: justify;
+      font-size: 1.5em;
+    }
+  }
+}
+
+mat-card.whyShouldYouChooseUs {
+
+  margin: 1%;
+
+  mat-card-content{
+    p{
+      text-align: justify;
+      font-size: 1.5em;
+    }
+  }
+}

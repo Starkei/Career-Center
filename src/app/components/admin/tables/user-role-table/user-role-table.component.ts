@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, MatSort } from '@angular/material';
 import { UserRoleTableDataSource } from './user-role-table-datasource';
 import { Slide } from 'src/app/animations/slide';
+import { UserRoleService } from 'src/app/services/userRole/user-role.service';
 
 @Component({
   selector: 'app-user-role-table',
@@ -15,9 +16,11 @@ export class UserRoleTableComponent implements OnInit {
   dataSource: UserRoleTableDataSource;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['id', 'name'];
+  displayedColumns = ['id'];
+
+  constructor(private service: UserRoleService) {}
 
   ngOnInit() {
-    this.dataSource = new UserRoleTableDataSource(this.paginator, this.sort);
+    this.dataSource = new UserRoleTableDataSource(this.service, this.paginator, this.sort);
   }
 }

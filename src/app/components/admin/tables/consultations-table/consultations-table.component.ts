@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, MatSort } from '@angular/material';
 import { ConsultationsTableDataSource } from './consultations-table-datasource';
 import { Slide } from 'src/app/animations/slide';
+import { ConsultationService } from 'src/app/services/consultations/consultation.service';
 
 @Component({
   selector: 'app-consultations-table',
@@ -15,9 +16,11 @@ export class ConsultationsTableComponent implements OnInit {
   dataSource: ConsultationsTableDataSource;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['id', 'name'];
+  displayedColumns = ['id', 'price', 'date', 'title', 'room'];
+
+  constructor(private service: ConsultationService){}
 
   ngOnInit() {
-    this.dataSource = new ConsultationsTableDataSource(this.paginator, this.sort);
+    this.dataSource = new ConsultationsTableDataSource(this.service, this.paginator, this.sort);
   }
 }

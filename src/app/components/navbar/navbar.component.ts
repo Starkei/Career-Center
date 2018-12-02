@@ -23,8 +23,10 @@ export class NavbarComponent implements OnInit {
   handSet: Observable<Boolean>;
 
   constructor(private breakPoints: BreakpointObserver) {
-    this.handSet = this.breakPoints.observe(Breakpoints.Handset)
-                        .pipe( map(result => result.matches));
+    this.handSet =  this.breakPoints.observe(Breakpoints.Handset)
+    .pipe(
+      map(result => result.matches)
+    );
   }
 
   ngOnInit() {

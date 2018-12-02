@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class SpecializationService {
 
-  baseUrl: string = "http://localhost:8080/specializations";
+  baseUrl: string = "http://localhost:8080/spectializations";
 
   constructor(private http: HttpClient) { }
 

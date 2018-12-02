@@ -22,6 +22,10 @@ module.exports = connection => {
 
       email: {
         type: connection.Sequelize.STRING
+      },
+
+      image: {
+        type: connection.Sequelize.STRING
       }
 
   });

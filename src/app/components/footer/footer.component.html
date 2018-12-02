@@ -1,0 +1,10 @@
+<footer>
+  <span *ngFor="let title of titles">
+    <div>
+      {{title.name | uppercase}}
+      <ul>
+        <li *ngFor="let item of title.content">{{item}}</li>
+      </ul>
+    </div>
+  </span>
+</footer>

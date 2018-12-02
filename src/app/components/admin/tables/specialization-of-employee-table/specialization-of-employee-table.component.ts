@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, MatSort } from '@angular/material';
 import { SpecializationOfEmployeeTableDataSource } from './specialization-of-employee-table-datasource';
 import { Slide } from 'src/app/animations/slide';
+import { SpecializationOfEmployeeService } from 'src/app/services/specializationOfEmployee/specialization-of-employee.service';
 
 @Component({
   selector: 'app-specialization-of-employee-table',
@@ -14,10 +15,11 @@ export class SpecializationOfEmployeeTableComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
   dataSource: SpecializationOfEmployeeTableDataSource;
 
-  /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['id', 'name'];
+  displayedColumns = ['id'];
+
+  constructor(private service: SpecializationOfEmployeeService){}
 
   ngOnInit() {
-    this.dataSource = new SpecializationOfEmployeeTableDataSource(this.paginator, this.sort);
+    this.dataSource = new SpecializationOfEmployeeTableDataSource(this.service, this.paginator, this.sort);
   }
 }

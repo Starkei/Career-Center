@@ -1,22 +1,42 @@
-<mat-toolbar class="candy-carousel">
-  <span>Consultation Center</span>
-  <span>
-    <button
-      type="button"
-      aria-label="Toggle sidenav"
-      mat-icon-button
-      (click)="drawer.toggle()"
-      *ngIf="handSet | async">
-      <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-    </button>
-  </span>
-  <span
-    [routerLink]="[{outlets: {navbar: [link.path]}}]"
-    routerLinkActive="router-link-active"
-    *ngFor="let link of links"
-  >
-    <button class="nav-buttons" mat-button>{{link.title | uppercase}}</button>
-  </span>
-</mat-toolbar>
-<router-outlet name="navbar"></router-outlet>
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport="true"
+      [attr.role]="'dialog'"
+      [mode]="'over'"
+      [opened]="false">
+    <mat-toolbar>Menu</mat-toolbar>
+    <mat-nav-list>
+      <a
+      mat-list-item
+      [routerLink]="[{outlets: {navbar: [link.path]}}]"
+      routerLinkActive="router-link-active"
+      *ngFor="let link of links"
+      >{{link.title}}</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="handSet | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span>Consultation center</span>
+      <span
+      *ngIf="!(handSet | async)">
+        <span
+        [routerLink]="[{outlets: {navbar: [link.path]}}]"
+        routerLinkActive="router-link-active"
+        *ngFor="let link of links"
+        >
+          <button class="nav-buttons" mat-button>{{link.title | uppercase}}</button>
+        </span>
+      </span>
+    </mat-toolbar>
+    <router-outlet name="navbar"></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
 

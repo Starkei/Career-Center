@@ -1,7 +1,7 @@
 const db = require("../../db/sequelize/db");
 
 const SpecializationOfEmoployee  = db.SpecializationOfEmoployee;
-const url = '/specializationsOfEmoployees'
+const url = '/specializationsOfEmployees'
 
 module.exports = app => {
   app.get(url + '/all', (req, res) => {

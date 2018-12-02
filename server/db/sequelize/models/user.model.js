@@ -35,6 +35,10 @@ module.exports = connection => {
 
     password: {
       type: connection.Sequelize.STRING
+    },
+
+    image: {
+      type: connection.Sequelize.STRING
     }
 
   });
