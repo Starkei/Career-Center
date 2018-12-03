@@ -42,6 +42,7 @@ import { SpecializationOfEmployeeTableComponent } from './components/admin/table
 import { UserTableComponent } from './components/admin/tables/user-table/user-table.component';
 import { UserRoleTableComponent } from './components/admin/tables/user-role-table/user-role-table.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
   declarations: [
@@ -67,7 +68,7 @@ import { FooterComponent } from './components/footer/footer.component';
     SpecializationOfEmployeeTableComponent,
     UserTableComponent,
     UserRoleTableComponent,
-    FooterComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
@@ -92,6 +93,9 @@ import { FooterComponent } from './components/footer/footer.component';
     MatInputModule,
     MatFormFieldModule,
     FlexLayoutModule,
+    AgmCoreModule.forRoot(
+      {apiKey: 'AIzaSyCWY8fA-pKpybggGwNR583xVZERT75T3eQ'}
+    )
   ],
   providers: [
     ConsultationService,

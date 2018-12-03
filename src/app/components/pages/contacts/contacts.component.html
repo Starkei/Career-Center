@@ -1,3 +1,46 @@
-<p>
-  contacts works!
-</p>
+<div class="container">
+  <span [@swimingOutLeft]>
+    <mat-card>
+      <mat-card-title>Corporate headquarters</mat-card-title>
+      <mat-card-content>
+        <p>Corporate headquarters</p>
+        <p>Archive3000</p>
+        <p>1985 Ceder Bridge Ave, Suite 3</p>
+        <p>Lakewood, NG 08701</p>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card>
+      <mat-card-title>Sales Info & Inquiries</mat-card-title>
+      <mat-card-content>
+        <p>Toll-free: 375 44 891 23 12</p>
+        <p>Email: info@archive300.com</p>
+      </mat-card-content>
+    </mat-card>
+  </span>
+  <span [@swimingOutRight]>
+    <mat-card>
+      <mat-card-title>General Contact</mat-card-title>
+      <mat-card-content>
+        <p>Toll-free: 375 44 889 12 99</p>
+        <p>Phone: 375 44 833 98 91</p>
+        <p>Fax: 723 998 9990</p>
+        <p>Email: office@archive300.com</p>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card>
+      <mat-card-title>International sales</mat-card-title>
+      <mat-card-content>
+        <p>Email: international@archive300.com</p>
+        <p>Phone: 375 44 897 98 91</p>
+      </mat-card-content>
+    </mat-card>
+  </span>
+</div>
+
+<div class="map">
+  <agm-map [latitude]="lat" [longitude]="lng">
+    <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+  </agm-map>
+</div>
