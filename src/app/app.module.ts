@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutModule } from '@angular/cdk/layout';
-import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule, MatTableModule, MatPaginatorModule, MatSortModule, MatDialogModule, MatFormFieldModule, MatInputModule } from '@angular/material';
+import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule, MatTableModule, MatPaginatorModule, MatSortModule, MatDialogModule, MatFormFieldModule, MatInputModule, MatMenuModule, MatExpansionModule } from '@angular/material';
 import {MatCardModule} from '@angular/material/card';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatRippleModule} from '@angular/material/core';
@@ -43,6 +43,9 @@ import { UserTableComponent } from './components/admin/tables/user-table/user-ta
 import { UserRoleTableComponent } from './components/admin/tables/user-role-table/user-role-table.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { AgmCoreModule } from '@agm/core';
+import { BestOfFiveComponent } from './components/pages/best-of-five/best-of-five.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { PersonalAreaComponent } from './components/pages/personal-area/personal-area.component';
 
 @NgModule({
   declarations: [
@@ -68,7 +71,10 @@ import { AgmCoreModule } from '@agm/core';
     SpecializationOfEmployeeTableComponent,
     UserTableComponent,
     UserRoleTableComponent,
-    FooterComponent
+    FooterComponent,
+    BestOfFiveComponent,
+    UserProfileComponent,
+    PersonalAreaComponent
   ],
   imports: [
     BrowserModule,
@@ -87,8 +93,10 @@ import { AgmCoreModule } from '@agm/core';
     MatSortModule,
     MatTabsModule,
     MatDialogModule,
+    MatExpansionModule,
     MatGridListModule,
     MatRippleModule,
+    MatMenuModule,
     HttpClientModule,
     MatInputModule,
     MatFormFieldModule,

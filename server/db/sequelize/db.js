@@ -23,7 +23,9 @@ SpecializationOfEmoployee.belongsTo(Specialization);
 SpecializationOfEmoployee.belongsTo(Employee);
 
 Employee.hasMany(Consultation);
+User.hasMany(Consultation);
 Consultation.belongsTo(Employee);
+Consultation.belongsTo(User);
 
 User.hasMany(Review);
 Employee.hasMany(Review);

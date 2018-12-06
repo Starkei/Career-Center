@@ -33,6 +33,7 @@
     "express": "^4.16.4",
     "hammerjs": "^2.0.8",
     "mysql2": "^1.6.4",
+    "ng-animate": "^0.3.4",
     "rxjs": "~6.3.3",
     "sequelize": "^4.41.2",
     "zone.js": "~0.8.26"

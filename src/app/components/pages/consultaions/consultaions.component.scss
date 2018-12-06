@@ -1,3 +1,8 @@
 mat-card{
   margin: 1%;
+  div{
+    display: flex;
+    height: 50vh;
+    overflow: hidden;
+  }
 }

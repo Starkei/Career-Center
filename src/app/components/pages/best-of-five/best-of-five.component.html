@@ -1,0 +1,36 @@
+<div fxLayout="row wrap"
+     fxLayout.lt-sm="column"
+     fxLayoutGap="0.5%"
+     flexLayoutAlign="flex-start"
+>
+
+    <mat-card
+        fxFlex="0 1 calc(33.3% - 2%)"
+        class="card-picture"
+        *ngFor="let c of data"
+        fxFlex.lt-md="0 1 calc(50% - 1.5%)"
+        fxFlex.lt-sm="100%"
+    >
+        <mat-card-header>
+          <mat-card-title fxLayout.gt-xs="row" fxLayout.xs="column">
+            <span>{{c.title}}</span>
+          </mat-card-title>
+          <mat-card-subtitle>
+            <span>{{c.date}}</span>
+            <span>{{c.room}}</span>
+          </mat-card-subtitle>
+        </mat-card-header>
+        <div>
+          <img mat-card-image [src]="c.employee.image">
+        </div>
+        <mat-card-content>
+          <p>Fullname: {{c.employee.fullName}}</p>
+          <p>Price: {{c.price}}$</p>
+          <p>Age: {{c.employee.age}}</p>
+        </mat-card-content>
+        <mat-card-footer>
+          <p>PhoneNumber: +375{{c.employee.phoneNumber}}</p>
+        </mat-card-footer>
+    </mat-card>
+
+</div>

@@ -1,0 +1,22 @@
+div.profile{
+
+  display: flex;
+
+  img{
+    width: 9vh;
+    height: 9vh;
+    border-radius: 50%;
+  }
+
+  img:hover{
+    cursor: pointer;
+  }
+
+  img:active{
+    outline: none;
+  }
+
+  img:focus{
+    outline: none;
+  }
+}

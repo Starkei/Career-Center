@@ -4,26 +4,34 @@
      flexLayoutAlign="flex-start">
 
     <mat-card
-        fxFlex="0 1 calc(33.3% - 1.5%)"
+        [@flipInX]
+        fxFlex="0 1 calc(33.3% - 2%)"
         class="card-picture"
         *ngFor="let c of datasource"
-        fxFlex.lt-md="0 1 calc(50% - 1.5%px)"
+        (click)="c.isClicked = !c.isClicked"
+        [@rubberBand]="c.isClicked ? 'in' : 'on'"
+        fxFlex.lt-md="0 1 calc(50% - 1.5%)"
         fxFlex.lt-sm="100%"
     >
         <mat-card-header>
           <mat-card-title fxLayout.gt-xs="row" fxLayout.xs="column">
-            <span>{{c.fullName}}</span>
+            <span>{{c.data.title}}</span>
           </mat-card-title>
           <mat-card-subtitle>
-            {{c.date}}
+            <span>{{c.data.date}}</span>
+            <span>{{c.data.room}}</span>
           </mat-card-subtitle>
         </mat-card-header>
-        <img mat-card-image [src]="c.image">
+        <div>
+          <img mat-card-image [src]="c.data.employee.image">
+        </div>
         <mat-card-content>
-          {{c.content}}
+          <p>Fullname: {{c.data.employee.fullName}}</p>
+          <p>Price: {{c.data.price}}$</p>
+          <p>Age: {{c.data.employee.age}}</p>
         </mat-card-content>
         <mat-card-footer>
-          {{c.footer}}
+          <p>PhoneNumber: +375{{c.data.employee.phoneNumber}}</p>
         </mat-card-footer>
       </mat-card>
 

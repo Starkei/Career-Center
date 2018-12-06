@@ -1,0 +1,25 @@
+mat-card.personal-area{
+
+  div{
+
+    display: flex;
+
+    img {
+      display: flex;
+      width: 20%;
+    }
+
+    mat-card-content{
+
+      margin: 1%;
+
+    }
+
+    div{
+      margin: auto;
+      display: block;
+    }
+
+  }
+
+}

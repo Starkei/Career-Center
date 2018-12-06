@@ -15,6 +15,14 @@ export class ConsultationService {
     return this.http.get<any[]>(this.baseUrl + "/all");
   }
 
+  getAllFree(): Observable<any[]>{
+    return this.http.get<any[]>(this.baseUrl + "/all/free");
+  }
+
+  getBestFive(): Observable<any[]>{
+    return this.http.get<any[]>(this.baseUrl + "/best/five");
+  }
+
   add(consultaion: any) {
     this.http.post<any[]>(this.baseUrl + "/add", consultaion).subscribe();
   }
