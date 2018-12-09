@@ -4,6 +4,7 @@ import { ConsultationService } from 'src/app/services/consultations/consultation
 import { trigger, transition, useAnimation } from '@angular/animations';
 import { flipInX, rubberBand } from 'ng-animate';
 import { DataSource } from 'src/app/models/data-source';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-consultaions',
@@ -27,8 +28,9 @@ export class ConsultaionsComponent implements OnInit {
 
   datasource: DataSource[] = [];
   test = false;
+  date: Date = new Date(Date.now());
 
-  constructor(private service: ConsultationService) {
+  constructor(private service: ConsultationService, private router: Router) {
   }
 
   visible: boolean = true;
@@ -38,11 +40,42 @@ export class ConsultaionsComponent implements OnInit {
   }
 
   getAll(){
-    this.service.getAllFree().subscribe(data => {
+    this.service.getByDate(new Date(Date.now())).subscribe(data => {
         for(let i = 0; i < data.length; i++)
           this.datasource.push(new DataSource(data[i], false));
       }
     );
   }
 
+  navigate(consultant: any){
+    consultant.isClicked = !consultant.isClicked;
+    setTimeout(() => this.router.navigate(['', {outlets: {navbar: ['consultant', consultant.data.employee.id]}}]), 800);
+  }
+
+  selectByDate(){
+    this.datasource = [];
+    this.service.getByDate(this.date).subscribe(data => {
+      console.log(data);
+      for(let i = 0; i < data.length; i++)
+        this.datasource.push(new DataSource(data[i], false));
+    });
+  }
+
+  selectNearDate(){
+    this.datasource = [];
+    this.service.getNearDate().subscribe(data => {
+      console.log(data);
+      for(let i = 0; i < data.length; i++)
+        this.datasource.push(new DataSource(data[i], false));
+    });
+  }
+
+  getAllFree(){
+    this.datasource = [];
+    this.service.getAllFree().subscribe(data => {
+      console.log(data);
+      for(let i = 0; i < data.length; i++)
+        this.datasource.push(new DataSource(data[i], false));
+    });
+  }
 }

@@ -1,4 +1,17 @@
 mat-toolbar{
   display: flex;
   justify-content: space-between;
+  span{
+    display: flex;
+    height: 100%;
+
+    img{
+      padding: 2%;
+      outline: none;
+    }
+
+    img:hover{
+      cursor: pointer;
+    }
+  }
 }

@@ -23,7 +23,15 @@
         *ngIf="handSet | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <span>Consultation center</span>
+      <span>
+        <img
+          (click)="logoHasClicked = !logoHasClicked"
+          [@rubberBand]="logoHasClicked ? 'in' : 'on'"
+          [routerLink]="['' ,{outlets: {navbar: ['main']}}]"
+          routerLinkActive="router-link-active"
+          src="../../../assets/images/LogoSample_ByTailorBrands.png"
+          alt="">
+      </span>
       <span
       *ngIf="!(handSet | async)">
         <span

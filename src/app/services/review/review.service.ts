@@ -15,10 +15,10 @@ export class ReviewService {
     return this.http.get<any[]>(this.baseUrl + "/all");
   }
 
-  getReviewForConsultant(consultant: any): Observable<any[]>{
-    return this.http.get<any[]>(this.baseUrl + "/forConsultant", {
+  getReviewByConsultantId(consultantId: number): Observable<any[]>{
+    return this.http.get<any[]>(this.baseUrl + "/forConsultantId", {
       params: {
-        nickName: consultant.fullName
+        id: consultantId.toString()
       },
     });
   }

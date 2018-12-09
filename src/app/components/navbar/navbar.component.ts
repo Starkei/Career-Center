@@ -21,6 +21,8 @@ import { Link } from 'src/app/models/link';
 })
 export class NavbarComponent implements OnInit {
 
+  logoHasClicked: boolean = false;
+
   links: Link[] = [
     new Link('main','Main', false),
     new Link('contact','Contact us', false),
@@ -39,7 +41,12 @@ export class NavbarComponent implements OnInit {
     );
   }
 
+  clicked(index: number){
+    this.links[index].isClicked = !this.links[index].isClicked;
+  }
+
   ngOnInit() {
+    this.logoHasClicked = false;
   }
 
 }

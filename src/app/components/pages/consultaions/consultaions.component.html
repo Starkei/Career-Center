@@ -1,46 +1,71 @@
-<div fxLayout="row wrap"
-     fxLayout.lt-sm="column"
-     fxLayoutGap="0.5%"
-     flexLayoutAlign="flex-start">
+<mat-drawer-container autosize>
+  <mat-drawer
+    opened
+    #drawer
+    mode="side">
+      <mat-form-field>
+          <input [(ngModel)]="date" matInput [matDatepicker]="picker" placeholder="Choose a date">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <button mat-raised-button (click)="selectByDate()">Find</button>
+      <mat-divider></mat-divider>
+      <button mat-raised-button (click)="selectNearDate()">Find near</button>
+      <mat-divider></mat-divider>
+      <button mat-raised-button (click)="getAllFree()">Get all</button>
+  </mat-drawer>
 
-    <mat-card
-        [@flipInX]
-        fxFlex="0 1 calc(33.3% - 2%)"
-        class="card-picture"
-        *ngFor="let c of datasource"
-        [@rubberBand]="c.isClicked ? 'in' : 'on'"
-        fxFlex.lt-md="0 1 calc(50% - 1.5%)"
-        fxFlex.lt-sm="100%"
-        routerLinkActive="router-link-active"
-    >
-        <mat-card-header>
-          <mat-card-title fxLayout.gt-xs="row" fxLayout.xs="column">
-            <span>{{c.data.title}}</span>
-          </mat-card-title>
-          <mat-card-subtitle>
-            <span>{{c.getDate()}}</span>
-            <span>{{c.data.room}}</span>
-          </mat-card-subtitle>
-        </mat-card-header>
-        <div>
-          <img mat-card-image [src]="c.data.employee.image">
-        </div>
-        <mat-card-content>
-          <p>Fullname: {{c.data.employee.fullName}}</p>
-          <p>Price: {{c.data.price}}$</p>
-          <p>Age: {{c.data.employee.age}}</p>
-          <p>PhoneNumber: +375{{c.data.employee.phoneNumber}}</p>
-        </mat-card-content>
-        <mat-card-actions>
-          <button
-            (click)="c.isClicked = !c.isClicked"
-            mat-stroked-button color="accent"
-            [routerLink]="['', {outlets: {navbar: ['consultant']}}]"
-            routerLinkActive="router-link-active"
-          >
-            Choose
-          </button>
-        </mat-card-actions>
-      </mat-card>
+  <div *ngIf="datasource.length !== 0" fxLayout="row wrap"
+  fxLayout.lt-sm="column"
+  fxLayoutGap="0.5%"
+  flexLayoutAlign="flex-start">
 
-</div>
+  <mat-card
+      [@flipInX]
+      fxFlex="0 1 calc(33.3% - 2%)"
+      class="card-picture"
+      *ngFor="let c of datasource"
+      [@rubberBand]="c.isClicked ? 'in' : 'on'"
+      fxFlex.lt-md="0 1 calc(50% - 1.5%)"
+      fxFlex.lt-sm="100%"
+      routerLinkActive="router-link-active"
+  >
+      <mat-card-header>
+        <mat-card-title fxLayout.gt-xs="row" fxLayout.xs="column">
+          <span>{{c.data.title}}</span>
+        </mat-card-title>
+        <mat-card-subtitle>
+          <span>{{c.getDate()}}</span>
+          <span>{{c.data.room}}</span>
+        </mat-card-subtitle>
+      </mat-card-header>
+      <img class="avatar" mat-card-image [src]="c.data.employee.image">
+      <mat-card-content>
+        <p>Fullname: {{c.data.employee.fullName}}</p>
+        <p>Price: {{c.data.price}}$</p>
+        <p>Age: {{c.data.employee.age}}</p>
+        <p>PhoneNumber: +375{{c.data.employee.phoneNumber}}</p>
+        <mat-divider></mat-divider>
+      </mat-card-content>
+      <mat-card-actions>
+        <button
+          (click)="navigate(c)"
+          mat-raised-button color="accent"
+        >
+          Choose
+        </button>
+        <button mat-mini-fab color="warn">
+          <mat-icon aria-label="Example icon-button with a heart icon">favorite</mat-icon>
+        </button>
+      </mat-card-actions>
+    </mat-card>
+
+  </div>
+
+  <div *ngIf="datasource.length === 0">
+    <p>For this date, consultation list is empty</p>
+  </div>
+
+
+</mat-drawer-container>
+

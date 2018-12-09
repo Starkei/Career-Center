@@ -23,6 +23,18 @@ export class ConsultationService {
     return this.http.get<any[]>(this.baseUrl + "/best/five");
   }
 
+  getByDate(date: Date): Observable<any[]>{
+    return this.http.get<any[]>(this.baseUrl + "/getByDate", {
+      params: {
+        date: date.toString()
+      }
+    });
+  }
+
+  getNearDate():Observable<any[]>{
+    return this.http.get<any[]>(this.baseUrl + "/getNearDate");
+  }
+
   add(consultaion: any) {
     this.http.post<any[]>(this.baseUrl + "/add", consultaion).subscribe();
   }

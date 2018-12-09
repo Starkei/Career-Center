@@ -1,5 +1,8 @@
 mat-card.whoWeAre {
 
+  display: flex;
+  flex-direction: column;
+
   margin: 1%;
 
   div.parallax-image{
@@ -12,6 +15,10 @@ mat-card.whoWeAre {
   }
 
   mat-card-content{
+    display: flex;
+    padding: 2%;
+    width: 80%;
+    margin: auto;
     p{
       text-align: justify;
       font-size: 1.5em;
@@ -25,6 +32,16 @@ mat-card.howManyOfUs {
   margin: 1%;
 
   mat-card-content{
+    display: flex;
+    padding: 2%;
+
+    justify-content: space-between;
+
+    img {
+      border-radius: 10%;
+      margin-left: 5%;
+    }
+
     p{
       text-align: justify;
       font-size: 1.5em;
@@ -37,6 +54,17 @@ mat-card.whyShouldYouChooseUs {
   margin: 1%;
 
   mat-card-content{
+    display: flex;
+
+    padding: 2%;
+
+    justify-content: space-between;
+
+    img {
+      border-radius: 10%;
+      margin-right: 5%;
+    }
+
     p{
       text-align: justify;
       font-size: 1.5em;

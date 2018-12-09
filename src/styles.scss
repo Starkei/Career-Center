@@ -2,10 +2,10 @@
 
 @include mat-core();
 
-$Career-Center-primary: mat-palette($mat-grey, 900);
-$Career-Center-accent: mat-palette($mat-pink, A200, A100, A400);
+$Career-Center-primary: mat-palette($mat-grey, 900, 800);
+$Career-Center-accent: mat-palette($mat-green, A200, A100, A400);
 $Career-Center-warn: mat-palette($mat-yellow);
-$Career-Center-theme: mat-dark-theme($Career-Center-primary, $Career-Center-accent, $Career-Center-warn);
+$Career-Center-theme: mat-light-theme($Career-Center-primary, $Career-Center-accent, $Career-Center-warn);
 
 
 @mixin footer-theme($theme) {
@@ -16,6 +16,7 @@ $Career-Center-theme: mat-dark-theme($Career-Center-primary, $Career-Center-acce
   footer{
     background-color: mat-color($primary);
     border-color: mat-color($accent, A400);
+    color: white;
   }
 }
 

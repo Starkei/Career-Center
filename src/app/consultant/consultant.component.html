@@ -1,20 +1,35 @@
 <div class="container">
 
-  <mat-card class="consultant">
+  <mat-card class="consultant" *ngIf="consultant">
     <mat-card-header>
-
+      <h1>{{consultant.fullName}}</h1>
     </mat-card-header>
-
-    <img mat-card-image [src]="r.user.image">
-
     <mat-card-content>
-
+      <div class="avatar">
+        <img mat-card-image [src]="consultant.image">
+      </div>
+     <div class="about">
+       <p><b>Email: </b>{{consultant.email}}</p>
+       <p><b>Phone: </b>{{consultant.phoneNumber}}</p>
+       <p><b>Age: </b>{{consultant.age}}</p>
+       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad maiores earum fugiat incidunt ipsa? Aliquid dolorum sunt itaque nostrum sint, delectus, explicabo quis omnis beatae, quae ex veritatis eius quaerat.</p>
+     </div>
     </mat-card-content>
   </mat-card>
 
-  <mat-card class="review">
+  <div class="review-writer">
+    <mat-form-field>
+      <textarea matInput name="" id="" cols="30" rows="10" placeholder="Write your review here"></textarea>
+    </mat-form-field>
+    <span>
+      <button mat-raised-button color="accent">Send</button>
+      <button mat-button>Clear</button>
+    </span>
+  </div>
+
+  <mat-card class="review" *ngIf="reviews.length !== 0">
     <mat-card-header>
-      <img mat-card-avatar>
+      <img mat-card-avatar [src]="r.user.image">
       <mat-card-title>{{r.user.fullName}}</mat-card-title>
     </mat-card-header>
     <mat-card-content>

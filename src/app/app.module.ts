@@ -5,10 +5,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutModule } from '@angular/cdk/layout';
-import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule, MatTableModule, MatPaginatorModule, MatSortModule, MatDialogModule, MatFormFieldModule, MatInputModule, MatMenuModule, MatExpansionModule } from '@angular/material';
+import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule, MatTableModule, MatPaginatorModule, MatSortModule, MatDialogModule, MatFormFieldModule, MatInputModule, MatMenuModule, MatExpansionModule, MatDividerModule, MatDatepickerModule } from '@angular/material';
 import {MatCardModule} from '@angular/material/card';
 import {MatTabsModule} from '@angular/material/tabs';
-import {MatRippleModule} from '@angular/material/core';
+import {MatRippleModule, MatNativeDateModule} from '@angular/material/core';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { MainComponent } from './components/pages/main/main.component';
@@ -93,6 +93,9 @@ import { ConsultantComponent } from './consultant/consultant.component';
     MatSidenavModule,
     MatIconModule,
     MatListModule,
+    MatDividerModule,
+    MatNativeDateModule,
+    MatDatepickerModule,
     MatCardModule,
     MatTableModule,
     MatPaginatorModule,

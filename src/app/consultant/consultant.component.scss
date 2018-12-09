@@ -4,8 +4,58 @@ div.container{
   width: 80%;
   margin: auto;
 
+  mat-card.consultant{
+
+    mat-card-header{
+      margin: 3%;
+    }
+
+    mat-card-content{
+
+      display: flex;
+
+      div.avatar{
+
+        width: 50vh;
+        height: 50vh;
+        margin: 3%;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          border-radius: 50%;
+        }
+      }
+
+      div.about{
+        width: 40%;
+        p{
+          text-align: justify;
+        }
+        *{
+          margin: 2%;
+        }
+      }
+
+    }
+
+  }
+
   mat-card.review{
     margin: 5%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  div.review-writer{
+    display: flex;
+    flex-direction: column;
+
+    textarea{
+      resize: none;
+    }
+
   }
 
 }

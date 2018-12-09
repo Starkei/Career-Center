@@ -20,7 +20,7 @@ const routes: Routes = [
     {path: 'main', component: MainComponent, outlet: 'navbar'},
     {path: 'contact', component: ContactsComponent, outlet: 'navbar'},
     {path: 'consultaions', component: ConsultaionsComponent, outlet: 'navbar'},
-    {path: 'consultant', component: ConsultantComponent, outlet: 'navbar'},
+    {path: 'consultant/:id', component: ConsultantComponent, outlet: 'navbar'},
     {path: 'personalArea', component: PersonalAreaComponent, outlet: 'navbar'},
     {path: 'admin', component: AdminComponent, outlet: 'navbar', children: [
       {path: '',redirectTo: '/(navbar:admin/(admin:consultaions))', pathMatch: 'full'},

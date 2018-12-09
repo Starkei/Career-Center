@@ -20,6 +20,7 @@ export class DataSource{
 
   getDate(): string {
     let date: Date = new Date(this.data.date);
+    date.setDate(date.getDate() - 1);
     return date.toLocaleString("en-US", this.dateFormat);
   }
 

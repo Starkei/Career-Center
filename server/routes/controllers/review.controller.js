@@ -15,11 +15,11 @@ module.exports = app => {
     }).then(data => res.send(data));
   });
 
-  app.get(url + '/forConsultant', (req, res) => {
+  app.get(url + '/forConsultantId', (req, res) => {
     Review.findAll({
       include : [
         {model: db.User},
-        {model: db.Employee, where: {fullName : req.query.fullName}}
+        {model: db.Employee, where: {id : Number(req.query.id)}}
       ]
     }).then(data => res.send(data));
   });
