@@ -29,3 +29,7 @@
     </button>
   </mat-menu>
 </div>
+<div class="autorisation" *ngIf="!user">
+  <button mat-button (click) = "openLogin()" >Login</button>
+  <button mat-button (click) = "openRegistration()" >Registration</button>
+</div>

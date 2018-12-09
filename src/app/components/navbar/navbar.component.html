@@ -31,7 +31,14 @@
         routerLinkActive="router-link-active"
         *ngFor="let link of links"
         >
-          <button class="nav-buttons" mat-button>{{link.title | uppercase}}</button>
+          <button
+            class="nav-buttons"
+            (click)="link.isClicked = !link.isClicked"
+            [@rubberBand]="link.isClicked ? 'in' : 'on'"
+            mat-button
+          >
+           {{link.title | uppercase}}
+          </button>
         </span>
       </span>
       <span>

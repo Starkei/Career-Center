@@ -8,17 +8,17 @@
         fxFlex="0 1 calc(33.3% - 2%)"
         class="card-picture"
         *ngFor="let c of datasource"
-        (click)="c.isClicked = !c.isClicked"
         [@rubberBand]="c.isClicked ? 'in' : 'on'"
         fxFlex.lt-md="0 1 calc(50% - 1.5%)"
         fxFlex.lt-sm="100%"
+        routerLinkActive="router-link-active"
     >
         <mat-card-header>
           <mat-card-title fxLayout.gt-xs="row" fxLayout.xs="column">
             <span>{{c.data.title}}</span>
           </mat-card-title>
           <mat-card-subtitle>
-            <span>{{c.data.date}}</span>
+            <span>{{c.getDate()}}</span>
             <span>{{c.data.room}}</span>
           </mat-card-subtitle>
         </mat-card-header>
@@ -29,10 +29,18 @@
           <p>Fullname: {{c.data.employee.fullName}}</p>
           <p>Price: {{c.data.price}}$</p>
           <p>Age: {{c.data.employee.age}}</p>
-        </mat-card-content>
-        <mat-card-footer>
           <p>PhoneNumber: +375{{c.data.employee.phoneNumber}}</p>
-        </mat-card-footer>
+        </mat-card-content>
+        <mat-card-actions>
+          <button
+            (click)="c.isClicked = !c.isClicked"
+            mat-stroked-button color="accent"
+            [routerLink]="['', {outlets: {navbar: ['consultant']}}]"
+            routerLinkActive="router-link-active"
+          >
+            Choose
+          </button>
+        </mat-card-actions>
       </mat-card>
 
 </div>

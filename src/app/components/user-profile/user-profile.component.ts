@@ -3,6 +3,9 @@ import { Select } from 'src/app/animations/select';
 import { UserRoleService } from 'src/app/services/userRole/user-role.service';
 import { rubberBand } from 'ng-animate';
 import { useAnimation, trigger, transition } from '@angular/animations';
+import { MatDialog } from '@angular/material';
+import { LoginComponent } from 'src/app/dialogs/login/login.component';
+import { RegistrationComponent } from 'src/app/dialogs/registration/registration.component';
 
 @Component({
   selector: 'app-user-profile',
@@ -28,11 +31,8 @@ export class UserProfileComponent implements OnInit {
     {path: 'personalArea', title: 'Logout'}
   ]
 
-  constructor(private service: UserRoleService) {
-    this.service.getUser({
-      nickName: 'Starkei',
-      password: '111222'
-    }).subscribe(user => this.user = user[0]);
+  constructor(private service: UserRoleService, private dialog: MatDialog) {
+    this.user = this.service.getCurrentUser();
   }
 
   ngOnInit() {
@@ -41,6 +41,18 @@ export class UserProfileComponent implements OnInit {
 
   Scale(){
     this.hover = !this.hover;
+  }
+
+  openLogin(){
+    let loginDialog = this.dialog.open(LoginComponent, {
+
+    });
+  }
+
+  openRegistration(){
+    let registrationDialog = this.dialog.open(RegistrationComponent, {
+
+    });
   }
 
 }

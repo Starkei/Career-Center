@@ -18,10 +18,7 @@ export class PersonalAreaComponent implements OnInit {
   user: any;
 
   constructor(private service: UserRoleService) {
-    this.service.getUser({
-      nickName: 'Starkei',
-      password: '111222'
-    }).subscribe(user => this.user = user[0]);
+    this.user = this.service.getCurrentUser();
   }
 
   ngOnInit() {

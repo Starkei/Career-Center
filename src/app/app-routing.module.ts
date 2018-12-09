@@ -13,12 +13,14 @@ import { SpecializationOfEmployeeTableComponent } from './components/admin/table
 import { UserTableComponent } from './components/admin/tables/user-table/user-table.component';
 import { UserRoleTableComponent } from './components/admin/tables/user-role-table/user-role-table.component';
 import { PersonalAreaComponent } from './components/pages/personal-area/personal-area.component';
+import { ConsultantComponent } from './consultant/consultant.component';
 
 const routes: Routes = [
     {path: '',redirectTo: '/(navbar:main)', pathMatch: 'full'},
     {path: 'main', component: MainComponent, outlet: 'navbar'},
     {path: 'contact', component: ContactsComponent, outlet: 'navbar'},
     {path: 'consultaions', component: ConsultaionsComponent, outlet: 'navbar'},
+    {path: 'consultant', component: ConsultantComponent, outlet: 'navbar'},
     {path: 'personalArea', component: PersonalAreaComponent, outlet: 'navbar'},
     {path: 'admin', component: AdminComponent, outlet: 'navbar', children: [
       {path: '',redirectTo: '/(navbar:admin/(admin:consultaions))', pathMatch: 'full'},
@@ -34,7 +36,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { enableTracing: true })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

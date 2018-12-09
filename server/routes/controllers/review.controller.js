@@ -5,6 +5,22 @@ const url = '/reviews'
 
 module.exports = app => {
   app.get(url + '/all', (req, res) => {
-    Review.findAll().then(data => res.send(data));
+    Review.findAll({
+
+      include : [
+        {model: db.Employee},
+        {model: db.User}
+      ]
+
+    }).then(data => res.send(data));
+  });
+
+  app.get(url + '/forConsultant', (req, res) => {
+    Review.findAll({
+      include : [
+        {model: db.User},
+        {model: db.Employee, where: {fullName : req.query.fullName}}
+      ]
+    }).then(data => res.send(data));
   });
 }

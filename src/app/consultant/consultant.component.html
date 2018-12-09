@@ -1,0 +1,27 @@
+<div class="container">
+
+  <mat-card class="consultant">
+    <mat-card-header>
+
+    </mat-card-header>
+
+    <img mat-card-image [src]="r.user.image">
+
+    <mat-card-content>
+
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card class="review">
+    <mat-card-header>
+      <img mat-card-avatar>
+      <mat-card-title>{{r.user.fullName}}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <p>
+        {{r.text}}
+      </p>
+    </mat-card-content>
+  </mat-card>
+
+</div>

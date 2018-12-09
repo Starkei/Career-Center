@@ -46,6 +46,9 @@ import { AgmCoreModule } from '@agm/core';
 import { BestOfFiveComponent } from './components/pages/best-of-five/best-of-five.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { PersonalAreaComponent } from './components/pages/personal-area/personal-area.component';
+import { LoginComponent } from './dialogs/login/login.component';
+import { RegistrationComponent } from './dialogs/registration/registration.component';
+import { ConsultantComponent } from './consultant/consultant.component';
 
 @NgModule({
   declarations: [
@@ -74,7 +77,10 @@ import { PersonalAreaComponent } from './components/pages/personal-area/personal
     FooterComponent,
     BestOfFiveComponent,
     UserProfileComponent,
-    PersonalAreaComponent
+    PersonalAreaComponent,
+    LoginComponent,
+    RegistrationComponent,
+    ConsultantComponent
   ],
   imports: [
     BrowserModule,
@@ -124,7 +130,9 @@ import { PersonalAreaComponent } from './components/pages/personal-area/personal
     AddToSpecializationsComponent,
     AddToSpecializationsOfEmployeesComponent,
     AddToUsersComponent,
-    AddToUsersRolesComponent
+    AddToUsersRolesComponent,
+    LoginComponent,
+    RegistrationComponent
   ]
 })
 export class AppModule { }

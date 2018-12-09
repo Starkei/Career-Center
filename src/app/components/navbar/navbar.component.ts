@@ -3,19 +3,29 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { DropDown } from 'src/app/animations/drop-down';
+import { trigger, transition, useAnimation } from '@angular/animations';
+import { rubberBand } from 'ng-animate';
+import { Link } from 'src/app/models/link';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
+  animations: [
+    trigger('rubberBand', [
+      transition('on <=> in', useAnimation(rubberBand, {
+        params: { timing: 1 }
+      }))
+    ])
+  ]
 })
 export class NavbarComponent implements OnInit {
 
-  links = [
-    {path: 'main', title: 'Main'},
-    {path: 'contact', title: 'Contact us'},
-    {path: 'consultaions', title: 'Consultaions list'},
-    {path: 'admin', title: 'Admin panel'}
+  links: Link[] = [
+    new Link('main','Main', false),
+    new Link('contact','Contact us', false),
+    new Link('consultaions','Consultations', false),
+    new Link('admin','Admin panel', false)
   ]
 
 
