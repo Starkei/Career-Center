@@ -1,6 +1,5 @@
 module.exports = connection => {
   const User = connection.sequelize.define("users", {
-
     id: {
       type: connection.Sequelize.INTEGER,
       primaryKey: true,
@@ -30,7 +29,8 @@ module.exports = connection => {
     },
 
     email: {
-      type: connection.Sequelize.STRING
+      type: connection.Sequelize.STRING,
+      unique: true
     },
 
     password: {
@@ -40,8 +40,7 @@ module.exports = connection => {
     image: {
       type: connection.Sequelize.STRING
     }
-
   });
 
   return User;
-}
+};

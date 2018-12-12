@@ -1,34 +1,52 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
+import { Observable } from "rxjs";
+import { map } from "rxjs/operators";
+import { JwtHelperService } from "@auth0/angular-jwt";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class UserRoleService {
-
   baseUrl: string = "http://localhost:8080/usersRoles";
   currentUser: any;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private jwt: JwtHelperService) {}
 
-  getAll(): Observable<any[]>{
-    return this.http.get<any[]>(this.baseUrl + "/all")
+  getAll(): Observable<any[]> {
+    return this.http.get<any[]>(this.baseUrl + "/all");
   }
 
-  getUser(user: any): Observable<any> {
-
-    return this.http.get<any[]>(this.baseUrl + "/user",{
+  getUser(userId: number): Observable<any> {
+    return this.http.get<any[]>(this.baseUrl + "/user", {
       params: {
-        nickName: user.nickName,
-        password: user.password
-      },
-    })
+        id: userId.toString()
+      }
+    });
   }
 
-  getCurrentUser(){
-    return this.currentUser;
+  login(user: any): Observable<boolean> {
+    return this.http
+      .post<{ token: string }>(this.baseUrl + "/logIn", user)
+      .pipe(
+        map(result => {
+          localStorage.setItem("token", result.token);
+          return true;
+        })
+      );
+  }
+
+  logout() {
+    localStorage.removeItem("token");
+  }
+
+  get loggedIn(): boolean {
+    return localStorage.getItem("token") !== null;
+  }
+
+  getCurrentUser() {
+    console.log(this.jwt.decodeToken(localStorage.getItem("token")));
+    return this.jwt.decodeToken(localStorage.getItem("token"));
   }
 
   add(userRole: any) {

@@ -1,35 +1,36 @@
-<div class="profile" *ngIf="user">
+<div class="profile" *ngIf="isLogin()">
   <img
     (mouseover)="hover = true"
     (mouseleave)="hover = false"
     (click)="isClicked = !isClicked"
     [@rubberBand]="isClicked ? 'in' : 'on'"
     [src]="user.user.image"
-    [routerLink]="[{outlets: {navbar: ['personalArea']}}]"
+    [routerLink]="[{ outlets: { navbar: ['personalArea'] } }]"
     routerLinkActive="router-link-active"
     alt=""
-  >
+  />
   <button
-  type="button"
-  aria-label="Toggle sidenav"
-  mat-icon-button
-  [matMenuTriggerFor]="menu"
-  (click)="drawer.toggle()"
+    type="button"
+    aria-label="Toggle sidenav"
+    mat-icon-button
+    [matMenuTriggerFor]="menu"
+    (click)="drawer.toggle()"
   >
     <mat-icon aria-label="Side nav toggle icon">more_vert</mat-icon>
   </button>
   <mat-menu #menu="matMenu">
     <button
-     mat-menu-item
-     [routerLink]="[{outlets: {navbar: [link.path]}}]"
-     routerLinkActive="router-link-active"
-     *ngFor="let link of links"
+      mat-menu-item
+      [routerLink]="[{ outlets: { navbar: [link.path] } }]"
+      routerLinkActive="router-link-active"
+      *ngFor="let link of links"
+      (click)="link.method()"
     >
-     {{link.title}}
+      {{ link.title }}
     </button>
   </mat-menu>
 </div>
-<div class="autorisation" *ngIf="!user">
-  <button mat-button (click) = "openLogin()" >Login</button>
-  <button mat-button (click) = "openRegistration()" >Registration</button>
+<div class="autorisation" *ngIf="!isLogin()">
+  <button mat-button (click)="openLogin()">Login</button>
+  <button mat-button (click)="openRegistration()">Registration</button>
 </div>
