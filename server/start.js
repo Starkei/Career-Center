@@ -19,7 +19,10 @@ app.use(
       "/consultaions/all/free",
       "/consultaions/best/five",
       "/consultaions/getByDate",
-      "/consultaions/getNearDate"
+      "/consultaions/getNearDate",
+      "/reviews/forConsultantId",
+      "/employees/getById",
+      "/reviews/addReview"
     ]
   })
 );

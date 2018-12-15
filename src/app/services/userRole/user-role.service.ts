@@ -49,6 +49,18 @@ export class UserRoleService {
     return this.jwt.decodeToken(localStorage.getItem("token"));
   }
 
+  isCurrentUserAdmin(): boolean {
+    let user = this.jwt.decodeToken(localStorage.getItem("token"));
+    if (!user) return false;
+    let isAdmin = false;
+    for (let i = 0; i < user.roles.length; i++) {
+      if (user.roles[i].name === "admin") {
+        isAdmin = true;
+      }
+    }
+    return isAdmin;
+  }
+
   add(userRole: any) {
     this.http.post<any[]>(this.baseUrl + "/add", userRole).subscribe();
   }

@@ -1,10 +1,12 @@
 <nav [@slide] mat-tab-nav-bar class="light">
-  <a mat-tab-link
-     *ngFor="let link of links"
-     [routerLink]="[{outlets: {admin: [link.path]}}]"
-     routerLinkActive #rla="routerLinkActive">
-    {{link.title}}
+  <a
+    mat-tab-link
+    *ngFor="let link of links"
+    [routerLink]="[{ outlets: { admin: [link.path] } }]"
+    routerLinkActive
+    #rla="routerLinkActive"
+  >
+    {{ link.title }}
   </a>
 </nav>
 <router-outlet name="admin"></router-outlet>
-

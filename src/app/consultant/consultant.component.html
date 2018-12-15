@@ -1,42 +1,52 @@
-<div class="container">
-
+<div [@bounceInLeft] class="container">
   <mat-card class="consultant" *ngIf="consultant">
     <mat-card-header>
-      <h1>{{consultant.fullName}}</h1>
+      <h1>{{ consultant.fullName }}</h1>
     </mat-card-header>
     <mat-card-content>
-      <div class="avatar">
-        <img mat-card-image [src]="consultant.image">
+      <div class="avatar"><img mat-card-image [src]="consultant.image" /></div>
+      <div class="about">
+        <p><b>Email: </b>{{ consultant.email }}</p>
+        <p><b>Phone: </b>{{ consultant.phoneNumber }}</p>
+        <p><b>Age: </b>{{ consultant.age }}</p>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad maiores
+          earum fugiat incidunt ipsa? Aliquid dolorum sunt itaque nostrum sint,
+          delectus, explicabo quis omnis beatae, quae ex veritatis eius quaerat.
+        </p>
       </div>
-     <div class="about">
-       <p><b>Email: </b>{{consultant.email}}</p>
-       <p><b>Phone: </b>{{consultant.phoneNumber}}</p>
-       <p><b>Age: </b>{{consultant.age}}</p>
-       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad maiores earum fugiat incidunt ipsa? Aliquid dolorum sunt itaque nostrum sint, delectus, explicabo quis omnis beatae, quae ex veritatis eius quaerat.</p>
-     </div>
     </mat-card-content>
   </mat-card>
 
   <div class="review-writer">
     <mat-form-field>
-      <textarea matInput name="" id="" cols="30" rows="10" placeholder="Write your review here"></textarea>
+      <textarea
+        matInput
+        name=""
+        id=""
+        cols="30"
+        rows="10"
+        placeholder="Write your review here"
+        [(ngModel)]="text"
+      ></textarea>
     </mat-form-field>
     <span>
-      <button mat-raised-button color="accent">Send</button>
+      <button mat-raised-button color="accent" (click)="sendReview()">
+        Send
+      </button>
       <button mat-button>Clear</button>
     </span>
   </div>
 
-  <mat-card class="review" *ngIf="reviews.length !== 0">
-    <mat-card-header>
-      <img mat-card-avatar [src]="r.user.image">
-      <mat-card-title>{{r.user.fullName}}</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-      <p>
-        {{r.text}}
-      </p>
-    </mat-card-content>
-  </mat-card>
-
+  <div *ngIf="reviews.length !== 0">
+    <mat-card class="review" *ngFor="let r of reviews">
+      <mat-card-header>
+        <img mat-card-avatar [src]="r.user.image" />
+      </mat-card-header>
+      <mat-card-content>
+        <h5>{{ r.user.fullName }}</h5>
+        <p>{{ r.text }}</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
 </div>

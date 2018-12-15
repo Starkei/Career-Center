@@ -1,21 +1,18 @@
-div.container{
+div.container {
   display: flex;
   flex-direction: column;
   width: 80%;
   margin: auto;
 
-  mat-card.consultant{
-
-    mat-card-header{
+  mat-card.consultant {
+    mat-card-header {
       margin: 3%;
     }
 
-    mat-card-content{
-
+    mat-card-content {
       display: flex;
 
-      div.avatar{
-
+      div.avatar {
         width: 50vh;
         height: 50vh;
         margin: 3%;
@@ -28,35 +25,30 @@ div.container{
         }
       }
 
-      div.about{
+      div.about {
         width: 40%;
-        p{
+        p {
           text-align: justify;
         }
-        *{
+        * {
           margin: 2%;
         }
       }
-
     }
-
   }
 
-  mat-card.review{
+  mat-card.review {
     margin: 5%;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
   }
 
-  div.review-writer{
+  div.review-writer {
     display: flex;
     flex-direction: column;
 
-    textarea{
+    textarea {
       resize: none;
     }
-
   }
-
 }
-

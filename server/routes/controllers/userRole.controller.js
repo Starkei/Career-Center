@@ -47,6 +47,8 @@ module.exports = app => {
           roles.push(loggedUser[i].role);
         }
 
+        console.log(loggedUser[0]);
+
         let token = jwt.sign(
           {
             user: loggedUser[0].user,
