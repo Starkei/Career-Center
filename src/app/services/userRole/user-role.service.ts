@@ -45,7 +45,6 @@ export class UserRoleService {
   }
 
   getCurrentUser() {
-    console.log(this.jwt.decodeToken(localStorage.getItem("token")));
     return this.jwt.decodeToken(localStorage.getItem("token"));
   }
 
@@ -59,6 +58,12 @@ export class UserRoleService {
       }
     }
     return isAdmin;
+  }
+
+  getCurrentUserRoles(): any[] {
+    let user = this.jwt.decodeToken(localStorage.getItem("token"));
+    if (!user) return [];
+    return user.roles;
   }
 
   add(userRole: any) {

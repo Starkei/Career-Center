@@ -2,7 +2,11 @@
   width: 100%;
 }
 
-.width-80-percent{
+.width-80-percent {
   width: 80%;
   margin: auto;
+}
+
+div.height-60-percent {
+  min-height: 65vh;
 }

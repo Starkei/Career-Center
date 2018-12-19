@@ -1,13 +1,14 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator, MatSort } from '@angular/material';
-import { ConsultationsTableDataSource } from './consultations-table-datasource';
-import { Slide } from 'src/app/animations/slide';
-import { ConsultationService } from 'src/app/services/consultations/consultation.service';
+import { Component, OnInit, ViewChild } from "@angular/core";
+import { MatPaginator, MatSort, MatDialog } from "@angular/material";
+import { ConsultationsTableDataSource } from "./consultations-table-datasource";
+import { Slide } from "src/app/animations/slide";
+import { ConsultationService } from "src/app/services/consultations/consultation.service";
+import { AddToConsultationsComponent } from "src/app/dialogs/admin/add-to-consultations/add-to-consultations.component";
 
 @Component({
-  selector: 'app-consultations-table',
-  templateUrl: './consultations-table.component.html',
-  styleUrls: ['./consultations-table.component.scss'],
+  selector: "app-consultations-table",
+  templateUrl: "./consultations-table.component.html",
+  styleUrls: ["./consultations-table.component.scss"],
   animations: [Slide]
 })
 export class ConsultationsTableComponent implements OnInit {
@@ -16,11 +17,38 @@ export class ConsultationsTableComponent implements OnInit {
   dataSource: ConsultationsTableDataSource;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['id', 'price', 'date', 'title', 'room'];
+  displayedColumns = ["emoloyee", "user", "price", "date", "title", "room"];
 
-  constructor(private service: ConsultationService){}
+  constructor(
+    private service: ConsultationService,
+    private dialog: MatDialog
+  ) {}
 
   ngOnInit() {
-    this.dataSource = new ConsultationsTableDataSource(this.service, this.paginator, this.sort);
+    this.dataSource = new ConsultationsTableDataSource(
+      [],
+      this.paginator,
+      this.sort
+    );
+
+    this.service
+      .getAll()
+      .subscribe(
+        data =>
+          (this.dataSource = new ConsultationsTableDataSource(
+            data,
+            this.paginator,
+            this.sort
+          ))
+      );
+  }
+
+  addConsultation() {
+    let ref = this.dialog.open(AddToConsultationsComponent);
+  }
+
+  getEmployee(row: any): string {
+    if (row.user) return row.user.fullName;
+    return "Empty";
   }
 }

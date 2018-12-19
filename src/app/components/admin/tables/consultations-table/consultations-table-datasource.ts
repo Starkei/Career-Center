@@ -2,14 +2,11 @@ import { DataSource } from '@angular/cdk/collections';
 import { MatPaginator, MatSort } from '@angular/material';
 import { map } from 'rxjs/operators';
 import { Observable, of as observableOf, merge } from 'rxjs';
-import { ConsultationService } from 'src/app/services/consultations/consultation.service';
 
 export class ConsultationsTableDataSource extends DataSource<any> {
-  data: any[] = [];
 
-  constructor(private service: ConsultationService, private paginator: MatPaginator, private sort: MatSort) {
+  constructor(private data: any[], private paginator: MatPaginator, private sort: MatSort) {
     super();
-    this.service.getAll().subscribe(data => this.data = data);
   }
 
   /**

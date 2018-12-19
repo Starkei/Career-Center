@@ -30,7 +30,7 @@ export class NavbarComponent implements OnInit {
     new Link("main", "Main", false),
     new Link("contact", "Contact us", false),
     new Link("consultaions", "Consultations", false),
-    new Link("admin", "Admin panel", false)
+    new Link("admin", "Admin panel", false, ["admin"])
   ];
 
   handSet: Observable<Boolean>;
@@ -50,5 +50,14 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit() {
     this.logoHasClicked = false;
+  }
+
+  isThisLinkShouldBeVisible(link: Link): boolean {
+    let roles: any[] = [{ name: "user" }];
+    let user = this.user.getCurrentUser();
+    if (user) roles = this.user.getCurrentUserRoles();
+    for (let i = 0; i < roles.length; i++)
+      if (link.roles.includes(roles[i].name)) return true;
+    return false;
   }
 }

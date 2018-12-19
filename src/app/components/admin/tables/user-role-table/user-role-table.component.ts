@@ -1,13 +1,19 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator, MatSort } from '@angular/material';
-import { UserRoleTableDataSource } from './user-role-table-datasource';
-import { Slide } from 'src/app/animations/slide';
-import { UserRoleService } from 'src/app/services/userRole/user-role.service';
+import { Component, OnInit, ViewChild } from "@angular/core";
+import {
+  MatPaginator,
+  MatSort,
+  MatDateFormats,
+  MatDialog
+} from "@angular/material";
+import { UserRoleTableDataSource } from "./user-role-table-datasource";
+import { Slide } from "src/app/animations/slide";
+import { UserRoleService } from "src/app/services/userRole/user-role.service";
+import { AddToUsersRolesComponent } from "src/app/dialogs/admin/add-to-users-roles/add-to-users-roles.component";
 
 @Component({
-  selector: 'app-user-role-table',
-  templateUrl: './user-role-table.component.html',
-  styleUrls: ['./user-role-table.component.scss'],
+  selector: "app-user-role-table",
+  templateUrl: "./user-role-table.component.html",
+  styleUrls: ["./user-role-table.component.scss"],
   animations: [Slide]
 })
 export class UserRoleTableComponent implements OnInit {
@@ -16,11 +22,29 @@ export class UserRoleTableComponent implements OnInit {
   dataSource: UserRoleTableDataSource;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['id'];
+  displayedColumns = ["user", "role"];
 
-  constructor(private service: UserRoleService) {}
+  constructor(private service: UserRoleService, private dialog: MatDialog) {}
 
   ngOnInit() {
-    this.dataSource = new UserRoleTableDataSource(this.service, this.paginator, this.sort);
+    this.dataSource = new UserRoleTableDataSource(
+      [],
+      this.paginator,
+      this.sort
+    );
+    this.service
+      .getAll()
+      .subscribe(
+        data =>
+          (this.dataSource = new UserRoleTableDataSource(
+            data,
+            this.paginator,
+            this.sort
+          ))
+      );
+  }
+
+  addUserRole() {
+    let ref = this.dialog.open(AddToUsersRolesComponent);
   }
 }

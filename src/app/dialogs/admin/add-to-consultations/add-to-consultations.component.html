@@ -1,3 +1,37 @@
-<p>
-  add-to-consultations works!
-</p>
+<div>
+  <mat-form-field>
+    <mat-select placeholder="Emplyees">
+      <mat-option *ngFor="let e of emplyees" [value]="e.fullName">
+        {{ e.fullName }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-select placeholder="Users">
+      <mat-option *ngFor="let u of users" [value]="u.fullName">
+        {{ u.fullName }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput type="number" [(ngModel)]="price" placeholder="Price" />
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput type="date" [(ngModel)]="date" placeholder="Date" />
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput type="text" [(ngModel)]="title" placeholder="Title" />
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput type="number" [(ngModel)]="room" placeholder="Room" />
+  </mat-form-field>
+
+  <button mat-button mat-dialog-close (click)="create()">Create</button>
+
+  <button mat-button mat-dialog-close>Cancel</button>
+</div>

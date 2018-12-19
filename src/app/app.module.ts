@@ -67,6 +67,7 @@ import { RegistrationComponent } from "./dialogs/registration/registration.compo
 import { ConsultantComponent } from "./consultant/consultant.component";
 import { JwtModule } from "@auth0/angular-jwt";
 import { AuthGuard } from "./guards/auth.guard";
+import { MatSelectModule } from "@angular/material/select";
 
 export function tokenGetter() {
   return localStorage.getItem("token");
@@ -110,6 +111,7 @@ export function tokenGetter() {
     BrowserAnimationsModule,
     LayoutModule,
     FormsModule,
+    MatSelectModule,
     MatToolbarModule,
     MatButtonModule,
     MatSidenavModule,
