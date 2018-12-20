@@ -62,6 +62,11 @@ export class UserProfileComponent implements OnInit {
     let loginDialog = this.dialog.open(LoginComponent, {});
   }
 
+  getPath(user) {
+    if (user) return "http://localhost:8080/images/" + user.user.image;
+    return "";
+  }
+
   openRegistration() {
     let registrationDialog = this.dialog.open(RegistrationComponent, {});
   }

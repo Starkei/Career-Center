@@ -1,6 +1,18 @@
 const db = require("../../db/sequelize/db");
 const jwt = require("jsonwebtoken");
 const UserRole = db.UserRole;
+var multer = require("multer");
+const storage = multer.diskStorage({
+  destination: function(req, file, cb) {
+    cb(null, "./src/assets/images");
+  },
+  filename: function(req, file, cb) {
+    cb(null, file.originalname);
+  }
+});
+const upload = multer({
+  storage: storage
+});
 const url = "/usersRoles";
 
 module.exports = app => {
@@ -61,6 +73,26 @@ module.exports = app => {
         );
         res.send({ token });
       } else res.sendStatus(401);
+    });
+  });
+
+  app.post(url + "/registration", upload.single("image"), (req, res) => {
+    db.UserRole.create(
+      {
+        user: {
+          fullName: req.body.fullName,
+          age: req.body.age,
+          nickName: req.body.nickName,
+          password: req.body.password,
+          email: req.body.email,
+          address: req.body.address,
+          phoneNumber: req.body.phoneNumber,
+          image: req.body.file
+        }
+      },
+      { include: [db.User] }
+    ).then(data => {
+      db.UserRole.update({ roleId: 1 }, { where: { id: data.id } });
     });
   });
 };

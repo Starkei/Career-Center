@@ -33,4 +33,9 @@ export class PersonalAreaComponent implements OnInit {
   }
 
   ngOnInit() {}
+
+  getPath(user) {
+    if (user) return "http://localhost:8080/images/" + user.user.image;
+    return "";
+  }
 }

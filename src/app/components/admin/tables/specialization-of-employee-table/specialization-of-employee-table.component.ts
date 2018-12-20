@@ -42,5 +42,20 @@ export class SpecializationOfEmployeeTableComponent implements OnInit {
 
   addSpecialization() {
     let ref = this.dialog.open(AddToSpecializationsOfEmployeesComponent);
+
+    ref
+      .afterClosed()
+      .subscribe(() =>
+        this.service
+          .getAll()
+          .subscribe(
+            data =>
+              (this.dataSource = new SpecializationOfEmployeeTableDataSource(
+                data,
+                this.paginator,
+                this.sort
+              ))
+          )
+      );
   }
 }

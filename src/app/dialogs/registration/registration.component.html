@@ -1,27 +1,52 @@
 <div>
-
   <mat-form-field>
-    <input matInput placeholder="Fullname">
+    <input [(ngModel)]="row.fullName" matInput placeholder="Fullname" />
   </mat-form-field>
 
   <mat-form-field>
-    <input matInput placeholder="Nickname">
+    <input [(ngModel)]="row.nickName" matInput placeholder="Nickname" />
   </mat-form-field>
 
   <mat-form-field>
-    <input matInput placeholder="Address">
+    <input [(ngModel)]="row.address" matInput placeholder="Address" />
   </mat-form-field>
 
   <mat-form-field>
-    <input matInput placeholder="Phone number">
+    <input matInput [(ngModel)]="row.phoneNumber" placeholder="Phone number" />
   </mat-form-field>
 
   <mat-form-field>
-    <input matInput placeholder="Age">
+    <input type="email" matInput [(ngModel)]="row.email" placeholder="Email" />
   </mat-form-field>
 
-  <button mat-button mat-dialog-close (click)="login()">Login</button>
+  <mat-form-field>
+    <input
+      matInput
+      type="password"
+      [(ngModel)]="row.password"
+      placeholder="Password"
+    />
+  </mat-form-field>
 
-  <button mat-button mat-dialog-close >Cancel</button>
+  <mat-form-field>
+    <input [(ngModel)]="row.age" matInput placeholder="Age" />
+  </mat-form-field>
 
+  <button type="button" mat-button (click)="imgFileInput.click()">
+    Add a photo
+  </button>
+  <input
+    hidden
+    type="file"
+    [(ngModel)]="row.image"
+    placeholder="Avatar"
+    #imgFileInput
+    (change)="previewImage($event)"
+  />
+
+  <button mat-button mat-dialog-close (click)="registration()">
+    Registration
+  </button>
+
+  <button mat-button mat-dialog-close>Cancel</button>
 </div>

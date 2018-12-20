@@ -68,6 +68,7 @@ import { ConsultantComponent } from "./consultant/consultant.component";
 import { JwtModule } from "@auth0/angular-jwt";
 import { AuthGuard } from "./guards/auth.guard";
 import { MatSelectModule } from "@angular/material/select";
+import { MatCheckboxModule } from "@angular/material/checkbox";
 
 export function tokenGetter() {
   return localStorage.getItem("token");
@@ -134,6 +135,7 @@ export function tokenGetter() {
     MatInputModule,
     MatFormFieldModule,
     FlexLayoutModule,
+    MatCheckboxModule,
     AgmCoreModule.forRoot({
       apiKey: "AIzaSyCWY8fA-pKpybggGwNR583xVZERT75T3eQ"
     }),

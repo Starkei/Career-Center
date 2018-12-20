@@ -1,34 +1,47 @@
 <div>
   <mat-form-field>
-    <mat-select placeholder="Emplyees">
-      <mat-option *ngFor="let e of emplyees" [value]="e.fullName">
+    <mat-select placeholder="Emplyees" [(ngModel)]="row.employeeId">
+      <mat-option *ngFor="let e of employees" [value]="e.id">
         {{ e.fullName }}
       </mat-option>
     </mat-select>
   </mat-form-field>
 
   <mat-form-field>
-    <mat-select placeholder="Users">
-      <mat-option *ngFor="let u of users" [value]="u.fullName">
+    <mat-select placeholder="Users" [(ngModel)]="row.userId">
+      <mat-option *ngFor="let u of users" [value]="u.id">
         {{ u.fullName }}
       </mat-option>
     </mat-select>
   </mat-form-field>
 
   <mat-form-field>
-    <input matInput type="number" [(ngModel)]="price" placeholder="Price" />
+    <input matInput type="number" [(ngModel)]="row.price" placeholder="Price" />
   </mat-form-field>
 
   <mat-form-field>
-    <input matInput type="date" [(ngModel)]="date" placeholder="Date" />
+    <input
+      matInput
+      [(ngModel)]="row.date"
+      [matDatepicker]="picker"
+      placeholder="Date"
+    />
+    <mat-datepicker-toggle matSuffix [for]="picker">
+      <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+    </mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
   </mat-form-field>
 
   <mat-form-field>
-    <input matInput type="text" [(ngModel)]="title" placeholder="Title" />
+    <input matInput type="time" [(ngModel)]="time" placeholder="Time" />
   </mat-form-field>
 
   <mat-form-field>
-    <input matInput type="number" [(ngModel)]="room" placeholder="Room" />
+    <input matInput type="text" [(ngModel)]="row.title" placeholder="Title" />
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput type="number" [(ngModel)]="row.room" placeholder="Room" />
   </mat-form-field>
 
   <button mat-button mat-dialog-close (click)="create()">Create</button>

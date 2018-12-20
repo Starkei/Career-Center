@@ -55,4 +55,9 @@ export class ConsultantComponent implements OnInit {
       })
       .subscribe(data => (this.reviews = data));
   }
+
+  getPath(consultant) {
+    if (consultant) return "http://localhost:8080/images/" + consultant.image;
+    return "";
+  }
 }

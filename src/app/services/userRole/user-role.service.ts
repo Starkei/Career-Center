@@ -69,4 +69,18 @@ export class UserRoleService {
   add(userRole: any) {
     this.http.post<any[]>(this.baseUrl + "/add", userRole).subscribe();
   }
+
+  reqistration(user: any) {
+    const fd = new FormData();
+    fd.append("image", user.image, user.image.name);
+    fd.append("fullName", user.fullName);
+    fd.append("age", user.age);
+    fd.append("address", user.address);
+    fd.append("nickName", user.nickName);
+    fd.append("phoneNumber", user.phoneNumber);
+    fd.append("email", user.email);
+    fd.append("file", user.image.name);
+    fd.append("password", user.image.password);
+    this.http.post<any[]>(this.baseUrl + "/registration", fd).subscribe();
+  }
 }

@@ -1,3 +1,43 @@
-<p>
-  add-to-employees works!
-</p>
+<div>
+  <mat-form-field>
+    <input
+      matInput
+      type="text"
+      [(ngModel)]="row.fullName"
+      placeholder="FullName"
+    />
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput type="number" [(ngModel)]="row.age" placeholder="Age" />
+  </mat-form-field>
+
+  <mat-form-field>
+    <input
+      matInput
+      type="number"
+      [(ngModel)]="row.phoneNumber"
+      placeholder="Phone number"
+    />
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput type="email" [(ngModel)]="row.email" placeholder="Email" />
+  </mat-form-field>
+
+  <button type="button" mat-button (click)="imgFileInput.click()">
+    Add a photo
+  </button>
+  <input
+    hidden
+    type="file"
+    [(ngModel)]="row.image"
+    placeholder="Avatar"
+    #imgFileInput
+    (change)="previewImage($event)"
+  />
+
+  <button mat-button mat-dialog-close (click)="create()">Create</button>
+
+  <button mat-button mat-dialog-close>Cancel</button>
+</div>

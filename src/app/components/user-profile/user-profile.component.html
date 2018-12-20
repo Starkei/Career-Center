@@ -4,7 +4,7 @@
     (mouseleave)="hover = false"
     (click)="isClicked = !isClicked"
     [@rubberBand]="isClicked ? 'in' : 'on'"
-    [src]="user.user.image"
+    [src]="getPath(user)"
     [routerLink]="[{ outlets: { navbar: ['personalArea'] } }]"
     routerLinkActive="router-link-active"
     alt=""

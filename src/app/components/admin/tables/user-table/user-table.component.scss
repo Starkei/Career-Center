@@ -10,3 +10,14 @@
 div.height-60-percent {
   min-height: 65vh;
 }
+
+span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+
+  button {
+    margin: 2%;
+  }
+}

@@ -4,6 +4,7 @@ import { EmployeeTableDataSource } from "./employee-table-datasource";
 import { Slide } from "src/app/animations/slide";
 import { EmployeeService } from "src/app/services/employee/employee.service";
 import { AddToEmployeesComponent } from "src/app/dialogs/admin/add-to-employees/add-to-employees.component";
+import { SelectionModel } from "@angular/cdk/collections";
 
 @Component({
   selector: "app-employee-table",
@@ -16,7 +17,15 @@ export class EmployeeTableComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
   dataSource: EmployeeTableDataSource;
 
-  displayedColumns = ["fullName", "age", "phoneNumber", "email", "image"];
+  displayedColumns = [
+    "select",
+    "fullName",
+    "age",
+    "phoneNumber",
+    "email",
+    "image"
+  ];
+  selection = new SelectionModel<any>(true, []);
 
   constructor(private service: EmployeeService, private dialog: MatDialog) {}
 
@@ -38,7 +47,36 @@ export class EmployeeTableComponent implements OnInit {
       );
   }
 
+  isAllSelected() {
+    const numSelected = this.selection.selected.length;
+    const numRows = this.dataSource.data.length;
+    return numSelected === numRows;
+  }
+
+  /** Selects all rows if they are not all selected; otherwise clear selection. */
+  masterToggle() {
+    this.isAllSelected()
+      ? this.selection.clear()
+      : this.dataSource.data.forEach(row => this.selection.select(row));
+  }
+
   addEmployees() {
     let ref = this.dialog.open(AddToEmployeesComponent);
+  }
+  deleteEmployees() {
+    this.service
+      .remove(this.selection.selected)
+      .subscribe(() =>
+        this.service
+          .getAll()
+          .subscribe(
+            data =>
+              (this.dataSource = new EmployeeTableDataSource(
+                data,
+                this.paginator,
+                this.sort
+              ))
+          )
+      );
   }
 }

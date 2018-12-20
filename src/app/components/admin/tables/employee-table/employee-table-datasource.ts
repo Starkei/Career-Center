@@ -6,7 +6,7 @@ import { EmployeeService } from "src/app/services/employee/employee.service";
 
 export class EmployeeTableDataSource extends DataSource<any> {
   constructor(
-    private data: any[],
+    public data: any[],
     private paginator: MatPaginator,
     private sort: MatSort
   ) {

@@ -43,5 +43,19 @@ export class SpecializationTableComponent implements OnInit {
 
   addSpecialization() {
     let ref = this.dialog.open(AddToSpecializationsComponent);
+    ref
+      .afterClosed()
+      .subscribe(() =>
+        this.service
+          .getAll()
+          .subscribe(
+            data =>
+              (this.dataSource = new SpecializationTableDataSource(
+                data,
+                this.paginator,
+                this.sort
+              ))
+          )
+      );
   }
 }

@@ -1,3 +1,9 @@
-<p>
-  add-to-specializations works!
-</p>
+<div>
+  <mat-form-field>
+    <input matInput type="text" placeholder="Name" [(ngModel)]="this.name" />
+  </mat-form-field>
+
+  <button mat-button mat-dialog-close (click)="create()">Create</button>
+
+  <button mat-button mat-dialog-close>Cancel</button>
+</div>

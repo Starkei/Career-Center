@@ -46,6 +46,8 @@ div.container {
   div.review-writer {
     display: flex;
     flex-direction: column;
+    margin-top: 3%;
+    margin-bottom: 3%;
 
     textarea {
       resize: none;

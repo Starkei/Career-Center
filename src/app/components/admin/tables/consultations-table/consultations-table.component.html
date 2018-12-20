@@ -1,8 +1,21 @@
-<div>
+<span>
   <button mat-raised-button (click)="addConsultation()">
     Add consultation
   </button>
-</div>
+  <button mat-raised-button (click)="deleteConsultations()">
+    Remove consultation
+  </button>
+
+  <button mat-raised-button (click)="createReportDocx()">
+    Create report to docx file for last 7 days
+  </button>
+
+  <button mat-raised-button (click)="createReportExcel()">
+    Create diagram to Excel file for last 7 days
+  </button>
+
+  <button mat-raised-button (click)="createReports()">Create reports</button>
+</span>
 
 <div class="mat-elevation-z8 width-80-percent height-60-percent" [@slide]>
   <table
@@ -12,6 +25,25 @@
     matSort
     aria-label="Elements"
   >
+    <ng-container matColumnDef="select">
+      <th mat-header-cell *matHeaderCellDef>
+        <mat-checkbox
+          (change)="$event ? masterToggle() : null"
+          [checked]="selection.hasValue() && isAllSelected()"
+          [indeterminate]="selection.hasValue() && !isAllSelected()"
+        >
+        </mat-checkbox>
+      </th>
+      <td mat-cell *matCellDef="let row">
+        <mat-checkbox
+          (click)="$event.stopPropagation()"
+          (change)="$event ? selection.toggle(row) : null"
+          [checked]="selection.isSelected(row)"
+        >
+        </mat-checkbox>
+      </td>
+    </ng-container>
+
     <ng-container matColumnDef="id">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Id</th>
       <td mat-cell *matCellDef="let row">{{ row.id }}</td>

@@ -1,3 +1,26 @@
-<p>
-  add-to-specializations-of-employees works!
-</p>
+<div>
+  <mat-form-field>
+    <mat-select
+      placeholder="Specialization"
+      [(ngModel)]="specilaization_of_employee.specialization"
+    >
+      <mat-option *ngFor="let s of specialization_data" [value]="s.id">{{
+        s.name
+      }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-select
+      placeholder="Employee"
+      [(ngModel)]="specilaization_of_employee.employee"
+    >
+      <mat-option *ngFor="let e of employees_data" [value]="e.id">{{
+        e.fullName
+      }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <button mat-raised-button mat-dialog-close (click)="create()">Create</button>
+  <button mat-button mat-dialog-close>Cancle</button>
+</div>

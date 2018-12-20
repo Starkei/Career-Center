@@ -1,36 +1,35 @@
-div.profile{
-
+div.profile {
   display: flex;
 
-  img{
+  img {
+    margin: auto;
     width: 9vh;
     height: 9vh;
     border-radius: 50%;
+    object-fit: cover;
   }
 
-  img:hover{
+  img:hover {
     cursor: pointer;
   }
 
-  img:active{
+  img:active {
     outline: none;
   }
 
-  img:focus{
+  img:focus {
     outline: none;
   }
 }
 
-div{
-
+div {
   display: flex;
 
   justify-content: space-between;
 
   height: 100%;
 
-  button{
+  button {
     font-size: 0.8em;
   }
-
 }
