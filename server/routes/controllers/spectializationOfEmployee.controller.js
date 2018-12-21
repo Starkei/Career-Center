@@ -21,4 +21,11 @@ module.exports = app => {
       );
     });
   });
+
+  app.get(url + "/byId", (req, res) => {
+    SpecializationOfEmoployee.findAll({
+      include: [db.Specialization, db.Employee],
+      where: { employeeId: req.query.id }
+    }).then(data => res.send(data));
+  });
 };

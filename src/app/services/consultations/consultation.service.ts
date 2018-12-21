@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
+import { identifierModuleUrl } from "@angular/compiler";
 
 @Injectable({
   providedIn: "root"
@@ -16,6 +17,12 @@ export class ConsultationService {
 
   getAllFree(): Observable<any[]> {
     return this.http.get<any[]>(this.baseUrl + "/all/free");
+  }
+
+  getByUserId(id): Observable<any[]> {
+    return this.http.get<any[]>(this.baseUrl + "/all/byId", {
+      params: { userId: id.toString() }
+    });
   }
 
   getBestFive(): Observable<any[]> {

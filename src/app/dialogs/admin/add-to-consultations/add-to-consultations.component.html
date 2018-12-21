@@ -1,50 +1,69 @@
 <div>
-  <mat-form-field>
-    <mat-select placeholder="Emplyees" [(ngModel)]="row.employeeId">
-      <mat-option *ngFor="let e of employees" [value]="e.id">
-        {{ e.fullName }}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
+  <div>
+    <mat-form-field>
+      <mat-select placeholder="Emplyees" [(ngModel)]="row.employeeId">
+        <mat-option
+          (click)="onChange()"
+          *ngFor="let e of employees"
+          [value]="e.id"
+        >
+          {{ e.fullName }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
 
-  <mat-form-field>
-    <mat-select placeholder="Users" [(ngModel)]="row.userId">
-      <mat-option *ngFor="let u of users" [value]="u.id">
-        {{ u.fullName }}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
+    <mat-form-field>
+      <mat-select placeholder="Users" [(ngModel)]="row.userId">
+        <mat-option *ngFor="let u of users" [value]="u.id">
+          {{ u.fullName }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
 
-  <mat-form-field>
-    <input matInput type="number" [(ngModel)]="row.price" placeholder="Price" />
-  </mat-form-field>
+    <mat-form-field *ngIf="spec.length !== 0">
+      <mat-select placeholder="Specialization" [(ngModel)]="row.specId">
+        <mat-option *ngFor="let s of spec" [value]="s.specialization.id">
+          {{ s.specialization.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
 
-  <mat-form-field>
-    <input
-      matInput
-      [(ngModel)]="row.date"
-      [matDatepicker]="picker"
-      placeholder="Date"
-    />
-    <mat-datepicker-toggle matSuffix [for]="picker">
-      <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
-    </mat-datepicker-toggle>
-    <mat-datepicker #picker></mat-datepicker>
-  </mat-form-field>
+    <mat-form-field>
+      <input
+        matInput
+        type="number"
+        [(ngModel)]="row.price"
+        placeholder="Price"
+      />
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field>
+      <input
+        matInput
+        [(ngModel)]="row.date"
+        [matDatepicker]="picker"
+        placeholder="Date"
+      />
+      <mat-datepicker-toggle matSuffix [for]="picker">
+        <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+      </mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
 
-  <mat-form-field>
-    <input matInput type="time" [(ngModel)]="time" placeholder="Time" />
-  </mat-form-field>
+    <mat-form-field>
+      <input matInput type="time" [(ngModel)]="time" placeholder="Time" />
+    </mat-form-field>
 
-  <mat-form-field>
-    <input matInput type="text" [(ngModel)]="row.title" placeholder="Title" />
-  </mat-form-field>
+    <mat-form-field>
+      <input matInput type="text" [(ngModel)]="row.title" placeholder="Title" />
+    </mat-form-field>
 
-  <mat-form-field>
-    <input matInput type="number" [(ngModel)]="row.room" placeholder="Room" />
-  </mat-form-field>
-
-  <button mat-button mat-dialog-close (click)="create()">Create</button>
-
-  <button mat-button mat-dialog-close>Cancel</button>
+    <mat-form-field>
+      <input matInput type="number" [(ngModel)]="row.room" placeholder="Room" />
+    </mat-form-field>
+  </div>
 </div>
+<button mat-button mat-dialog-close (click)="create()">Create</button>
+
+<button mat-button mat-dialog-close>Cancel</button>

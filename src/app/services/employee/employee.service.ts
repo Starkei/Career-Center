@@ -25,8 +25,8 @@ export class EmployeeService {
     this.http.post<any[]>(this.baseUrl + "/add", fd).subscribe();
   }
 
-  getById(id: number): Observable<any[]> {
-    return this.http.get<any[]>(this.baseUrl + "/getById", {
+  getById(id: number): Observable<any> {
+    return this.http.get<any>(this.baseUrl + "/getById", {
       params: {
         id: id.toString()
       }

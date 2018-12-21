@@ -37,7 +37,7 @@ export class ConsultantComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(params => (this.consultantId = params["id"]));
     this.employeeService.getById(this.consultantId).subscribe(data => {
-      this.consultant = data[0];
+      this.consultant = data;
       console.log(this.consultant);
     });
     this.service.getReviewByConsultantId(this.consultantId).subscribe(data => {
@@ -57,7 +57,8 @@ export class ConsultantComponent implements OnInit {
   }
 
   getPath(consultant) {
-    if (consultant) return "http://localhost:8080/images/" + consultant.image;
+    if (consultant)
+      return "http://localhost:8080/images/" + consultant.handler.image;
     return "";
   }
 }

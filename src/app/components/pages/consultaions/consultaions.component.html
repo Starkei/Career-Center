@@ -28,7 +28,7 @@
       [@flipInX]
       fxFlex="0 1 calc(33.3% - 2%)"
       class="card-picture"
-      *ngFor="let c of datasource"
+      *ngFor="let c of datasource; let i = index"
       [@rubberBand]="c.isClicked ? 'in' : 'on'"
       fxFlex.lt-md="0 1 calc(50% - 1.5%)"
       fxFlex.lt-sm="100%"
@@ -49,6 +49,7 @@
         <p>Age: {{ c.data.employee.age }}</p>
         <p>PhoneNumber: +375{{ c.data.employee.phoneNumber }}</p>
         <p>Room: {{ c.data.room }}</p>
+        <p>Specialization: {{ c.data.specialization.name }}</p>
         <mat-divider></mat-divider>
       </mat-card-content>
       <mat-card-actions>

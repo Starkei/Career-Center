@@ -26,7 +26,8 @@ export class ConsultationsTableComponent implements OnInit {
     "price",
     "date",
     "title",
-    "room"
+    "room",
+    "spec"
   ];
   load: any = {
     id: 0,
@@ -63,7 +64,9 @@ export class ConsultationsTableComponent implements OnInit {
   }
 
   addConsultation() {
-    let ref = this.dialog.open(AddToConsultationsComponent);
+    let ref = this.dialog.open(AddToConsultationsComponent, {
+      width: "500px"
+    });
     ref
       .afterClosed()
       .subscribe(() =>
@@ -114,17 +117,14 @@ export class ConsultationsTableComponent implements OnInit {
   }
 
   createReportDocx() {
-    alert("Sended Docx");
     this.service.sendToDocx();
   }
 
   createReportExcel() {
-    alert("Sended Excel");
     this.service.sendToExcel();
   }
 
   createReports() {
-    alert("Sended ALL");
     this.service.sendToAll();
   }
 }

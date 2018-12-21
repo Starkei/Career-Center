@@ -5,7 +5,9 @@ const Employee = require("./models/employee.model")(connection);
 const Review = require("./models/review.model")(connection);
 const Role = require("./models/role.model")(connection);
 const Specialization = require("./models/specialization.model")(connection);
-const SpecializationOfEmoployee = require("./models/specializationOfEmployees.model")(connection);
+const SpecializationOfEmoployee = require("./models/specializationOfEmployees.model")(
+  connection
+);
 const User = require("./models/user.model")(connection);
 const UserRole = require("./models/userRole.model")(connection);
 
@@ -26,6 +28,9 @@ Employee.hasMany(Consultation);
 User.hasMany(Consultation);
 Consultation.belongsTo(Employee);
 Consultation.belongsTo(User);
+
+Specialization.hasOne(Consultation);
+Consultation.belongsTo(Specialization);
 
 User.hasMany(Review);
 Employee.hasMany(Review);

@@ -21,9 +21,22 @@ module.exports = app => {
   });
 
   app.get(url + "/getById", (req, res) => {
-    Employee.findAll({
+    var handler = {};
+    Employee.findOne({
       where: { id: Number(req.query.id) }
-    }).then(data => res.send(data));
+    }).then(data => {
+      handler = data;
+      db.SpecializationOfEmoployee.findAll({
+        include: [{ model: db.Specialization }],
+        where: { employeeId: data.id }
+      }).then(specializations => {
+        specializations = specializations.map(element => {
+          return element.specialization.name;
+        });
+        console.log(specializations);
+        res.send({ specializations, handler });
+      });
+    });
   });
 
   app.post(url + "/add", upload.single("image"), (req, res) => {

@@ -20,6 +20,7 @@ app.use(
       /\/images\/*/,
       "/consultaions/all",
       "/consultaions/all/free",
+      /\/consultaions\/all\/byId*/,
       "/consultaions/best/five",
       "/consultaions/getByDate",
       "/consultaions/getNearDate",
@@ -42,12 +43,15 @@ app.use(
       "/users/all",
       "/specializationsOfEmployees/all",
       "/specializationsOfEmployees/add",
+      /\/specializationsOfEmployees\/byId*/,
       "/spectializations/all",
       "/spectializations/add",
       "/employees/getById"
     ]
   })
 );
+
+//db.sequelize.sync({ alter: true, sync: true });
 
 require("./routes/controllers")(app);
 

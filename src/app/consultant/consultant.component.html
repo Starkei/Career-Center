@@ -1,16 +1,18 @@
 <div [@bounceInLeft] class="container">
   <mat-card class="consultant" *ngIf="consultant">
     <mat-card-header>
-      <h1>{{ consultant.fullName }}</h1>
+      <h1>{{ consultant.handler.fullName }}</h1>
     </mat-card-header>
     <mat-card-content>
       <div class="avatar">
         <img mat-card-image [src]="getPath(consultant)" />
       </div>
       <div class="about">
-        <p><b>Email: </b>{{ consultant.email }}</p>
-        <p><b>Phone: </b>{{ consultant.phoneNumber }}</p>
-        <p><b>Age: </b>{{ consultant.age }}</p>
+        <p><b>Email: </b>{{ consultant.handler.email }}</p>
+        <p><b>Phone: </b>{{ consultant.handler.phoneNumber }}</p>
+        <p><b>Age: </b>{{ consultant.handler.age }}</p>
+        <p><b>Age: </b>{{ consultant.handler.age }}</p>
+        <p><b>Specializations: </b>{{ consultant.specializations }}</p>
       </div>
     </mat-card-content>
   </mat-card>

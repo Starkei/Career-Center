@@ -7,14 +7,13 @@ var path = require("path");
 var outDir = path.join(__dirname, "../../assets/export/");
 
 const db = require("../../db/sequelize/db");
-
 const Consultation = db.Consultation;
 const url = "/consultaions";
 
 module.exports = app => {
   app.get(url + "/all", (req, res) => {
     Consultation.findAll({
-      include: [db.Employee, db.User]
+      include: [db.Employee, db.User, db.Specialization]
     }).then(data => res.send(data));
   });
 
@@ -22,12 +21,39 @@ module.exports = app => {
     let date = new Date(Date.now());
 
     Consultation.findAll({
-      include: [{ model: db.Employee }, { model: db.User }],
+      include: [
+        { model: db.Employee },
+        { model: db.User },
+        { model: db.Specialization }
+      ],
       where: {
         userId: null,
         date: { [db.Sequelize.Op.gte]: date }
-      }
-    }).then(data => res.send(data));
+      },
+      order: ["employeeId"]
+    }).then(data => {
+      res.send(data);
+    });
+  });
+
+  app.get(url + "/all/byId", (req, res) => {
+    let date = new Date();
+    date.setDate(date.getDate() - 7);
+
+    Consultation.findAll({
+      include: [
+        { model: db.Employee },
+        { model: db.User },
+        { model: db.Specialization }
+      ],
+      where: {
+        userId: req.query.userId,
+        date: { [db.Sequelize.Op.gte]: date }
+      },
+      order: ["employeeId"]
+    }).then(data => {
+      res.send(data);
+    });
   });
 
   app.get(url + "/best/five", (reg, res) => {
@@ -60,7 +86,11 @@ module.exports = app => {
         },
         userId: null
       },
-      include: [{ model: db.Employee }, { model: db.User }]
+      include: [
+        { model: db.Employee },
+        { model: db.User },
+        { model: db.Specialization }
+      ]
     }).then(data => res.send(data));
   });
 
@@ -76,7 +106,11 @@ module.exports = app => {
             [db.Sequelize.Op.and]: [{ [db.Sequelize.Op.eq]: min }]
           }
         },
-        include: [{ model: db.Employee }, { model: db.User }]
+        include: [
+          { model: db.Employee },
+          { model: db.User },
+          { model: db.Specialization }
+        ]
       }).then(data => res.send(data));
     });
   });
@@ -102,6 +136,11 @@ module.exports = app => {
           { employeeId: Number(consultation.employeeId) },
           { where: { id: data.id } }
         );
+
+      db.Consultation.update(
+        { specializationId: consultation.specId },
+        { where: { id: data.id } }
+      );
     });
   });
 
@@ -122,6 +161,10 @@ module.exports = app => {
   });
 
   app.get(url + "/excel", (req, res) => {
+    let min_date = new Date();
+    let max_date = new Date();
+    max_date.setDate(max_date.getDate() + 1);
+    min_date.setDate(min_date.getDate() - 7);
     db.Consultation.findAll({
       attributes: [
         [db.sequelize.fn("sum", db.sequelize.col("price")), "total_cost"]
@@ -137,7 +180,15 @@ module.exports = app => {
           require: true
         }
       ],
-      where: { userId: { [db.Sequelize.Op.ne]: null } },
+      where: {
+        date: {
+          [db.Sequelize.Op.and]: {
+            [db.Sequelize.Op.gte]: min_date,
+            [db.Sequelize.Op.lte]: max_date
+          }
+        },
+        userId: { [db.Sequelize.Op.ne]: null }
+      },
       group: ["employee.id", "user.id"]
     }).then(data => {
       fields = data.map(element => {
@@ -165,7 +216,7 @@ module.exports = app => {
         if (err) {
           console.error(err);
         } else {
-          fs.writeFileSync("DiagramLast7Days.xlsx", data);
+          fs.writeFileSync(outDir + "DiagramLast7Days.xlsx", data);
         }
       });
     });
@@ -174,8 +225,12 @@ module.exports = app => {
   app.get(url + "/docx", (req, res) => {
     let min_date = new Date();
     let max_date = new Date();
-    min_date.setDate(date.getDate() - 7);
+    min_date.setDate(min_date.getDate() - 7);
+    max_date.setDate(max_date.getDate() + 1);
     db.Consultation.findAll({
+      attributes: [
+        [db.sequelize.fn("sum", db.sequelize.col("price")), "total_cost"]
+      ],
       include: [{ model: db.User }, { model: db.Employee }],
       where: {
         date: {
@@ -183,27 +238,98 @@ module.exports = app => {
             [db.Sequelize.Op.gte]: min_date,
             [db.Sequelize.Op.lte]: max_date
           }
-        }
-      }
+        },
+        userId: { [db.Sequelize.Op.ne]: null }
+      },
+      group: ["employee.id", "user.id"]
     }).then(data => {
+      res.send(data);
       var docx = officegen({
         type: "docx",
         orientation: "portrait",
         pageMargins: { top: 1000, left: 1000, bottom: 1000, right: 1000 }
       });
       var paragraph = docx.createP();
-      paragraph.addText("Report of last 7 days");
-      paragraph.addText(" with color", { color: "000088" });
-      paragraph.addText(" and back color.", {
-        color: "00ffff",
-        back: "000088"
+      paragraph.addText("Report of last 7 days", {
+        font_size: 30,
+        bold: true,
+        underline: true
       });
+      paragraph.options.align = "center";
 
-      var paragraph = docx.createP();
+      dataSource = [];
 
-      var out = fs.createWriteStream(
-        path.join(outDir, "DiagramLast7Days.docx")
-      );
+      for (let i = 0; i < data.length; i++) {
+        let row = [
+          i + 1,
+          data[i].dataValues.total_cost,
+          data[i].employee.fullName
+        ];
+        dataSource.push(row);
+      }
+
+      var table = [
+        [
+          {
+            val: "No.",
+            opts: {
+              cellColWidth: 1000,
+              color: "FFFFFF",
+              b: true,
+              sz: "25",
+              shd: {
+                fill: "7F7F7F",
+                themeFill: "text1",
+                themeFillTint: "80"
+              },
+              fontFamily: "Avenir Book"
+            }
+          },
+          {
+            val: "Total",
+            opts: {
+              cellColWidth: 4261,
+              color: "FFFFFF",
+              b: true,
+              sz: "25",
+              shd: {
+                fill: "7F7F7F",
+                themeFill: "text1",
+                themeFillTint: "80"
+              },
+              fontFamily: "Avenir Book"
+            }
+          },
+          {
+            val: "FullName",
+            opts: {
+              cellColWidth: 4261,
+              color: "FFFFFF",
+              b: true,
+              sz: "25",
+              shd: {
+                fill: "7F7F7F",
+                themeFill: "text1",
+                themeFillTint: "80"
+              },
+              fontFamily: "Avenir Book"
+            }
+          }
+        ],
+        ...dataSource
+      ];
+
+      var tableStyle = {
+        tableColWidth: 4261,
+        tableSize: 24,
+        tableColor: "FFFFFF",
+        tableAlign: "justify",
+        tableFontFamily: "Comic Sans MS"
+      };
+
+      paragraph = docx.createTable(table, tableStyle);
+
+      var out = fs.createWriteStream(path.join(outDir, "ReportLast7Days.docx"));
 
       out.on("error", function(err) {
         console.log(err);
@@ -275,6 +401,60 @@ module.exports = app => {
           fs.writeFileSync("DiagramLast7Days.xlsx", data);
         }
       });
+    });
+    let min_date = new Date();
+    let max_date = new Date();
+    min_date.setDate(date.getDate() - 7);
+    db.Consultation.findAll({
+      include: [{ model: db.User }, { model: db.Employee }],
+      where: {
+        date: {
+          [db.Sequelize.Op.and]: {
+            [db.Sequelize.Op.gte]: min_date,
+            [db.Sequelize.Op.lte]: max_date
+          }
+        }
+      }
+    }).then(data => {
+      var docx = officegen({
+        type: "docx",
+        orientation: "portrait",
+        pageMargins: { top: 1000, left: 1000, bottom: 1000, right: 1000 }
+      });
+      var paragraph = docx.createP();
+      paragraph.addText("Report of last 7 days");
+      paragraph.addText(" with color", { color: "000088" });
+      paragraph.addText(" and back color.", {
+        color: "00ffff",
+        back: "000088"
+      });
+
+      var paragraph = docx.createP();
+
+      var out = fs.createWriteStream(
+        path.join(outDir, "DiagramLast7Days.docx")
+      );
+
+      out.on("error", function(err) {
+        console.log(err);
+      });
+
+      async.parallel(
+        [
+          function(done) {
+            out.on("close", function() {
+              console.log("Finish to create a DOCX file.");
+              done(null);
+            });
+            docx.generate(out);
+          }
+        ],
+        function(err) {
+          if (err) {
+            console.log("error: " + err);
+          } // Endif.
+        }
+      );
     });
   });
 };

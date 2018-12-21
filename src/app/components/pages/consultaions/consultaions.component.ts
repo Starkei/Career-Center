@@ -90,7 +90,6 @@ export class ConsultaionsComponent implements OnInit {
   getAllFree() {
     this.datasource = [];
     this.service.getAllFree().subscribe(data => {
-      console.log(data);
       for (let i = 0; i < data.length; i++)
         this.datasource.push(new DataSource(data[i], false));
     });
@@ -105,6 +104,13 @@ export class ConsultaionsComponent implements OnInit {
   writeUser(dataSource: any) {
     this.service
       .writeUser(this.user.getCurrentUser(), dataSource.data)
-      .subscribe(() => this.getAllFree());
+      .subscribe(data => {
+        alert("update!");
+        this.datasource = [];
+        this.service.getAllFree().subscribe(data => {
+          for (let i = 0; i < data.length; i++)
+            this.datasource.push(new DataSource(data[i], false));
+        });
+      });
   }
 }

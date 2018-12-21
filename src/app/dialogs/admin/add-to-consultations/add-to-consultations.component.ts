@@ -2,6 +2,8 @@ import { Component, OnInit } from "@angular/core";
 import { UserService } from "src/app/services/user/user.service";
 import { EmployeeService } from "src/app/services/employee/employee.service";
 import { ConsultationService } from "src/app/services/consultations/consultation.service";
+import { SpecializationService } from "src/app/services/specialization/specialization.service";
+import { SpecializationOfEmployeeService } from "src/app/services/specializationOfEmployee/specialization-of-employee.service";
 
 @Component({
   selector: "app-add-to-consultations",
@@ -9,8 +11,9 @@ import { ConsultationService } from "src/app/services/consultations/consultation
   styleUrls: ["./add-to-consultations.component.scss"]
 })
 export class AddToConsultationsComponent implements OnInit {
-  users: any[];
-  employees: any[];
+  users: any[] = [];
+  employees: any[] = [];
+  spec: any[] = [];
   time: any;
   row: any = {
     userId: "",
@@ -18,18 +21,26 @@ export class AddToConsultationsComponent implements OnInit {
     price: 0,
     date: new Date(),
     title: "",
-    room: 0
+    room: 0,
+    specId: ""
   };
 
   constructor(
     private consultation: ConsultationService,
     private user: UserService,
-    private employee: EmployeeService
+    private employee: EmployeeService,
+    private specialization: SpecializationOfEmployeeService
   ) {}
 
   ngOnInit() {
     this.user.getAll().subscribe(data => (this.users = data));
     this.employee.getAll().subscribe(data => (this.employees = data));
+  }
+
+  onChange() {
+    this.specialization
+      .getByEmployeeId(this.row.employeeId)
+      .subscribe(data => (this.spec = data));
   }
 
   create() {
